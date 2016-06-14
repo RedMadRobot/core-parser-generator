@@ -1,0 +1,3 @@
+[submodule "Source/ParserGenerator/ParserGenerator/Libraries"]
+	path = Source/ParserGenerator/ParserGenerator/Libraries
+	url = git@git.redmadrobot.com:foundation-ios/ModelCompiler.git
