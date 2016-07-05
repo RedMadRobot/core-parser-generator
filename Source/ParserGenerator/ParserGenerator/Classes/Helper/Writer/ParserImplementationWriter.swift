@@ -25,7 +25,7 @@ class ParserImplementationWriter {
         klass: Klass,
         klasses: [Klass],
         projectName: String
-        ) throws -> String
+    ) throws -> String
     {
         let head: String = ""
             .addLine("//")
