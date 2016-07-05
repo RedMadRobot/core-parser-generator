@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CE5C17939DBF81CC55932B4 /* DatePropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C9D0EBB5BDFF7F02310B /* DatePropertyWriter.swift */; };
+		5CE5C4541F44C2F40F1A6643 /* ObjectPropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C7389EED357DB764995B /* ObjectPropertyWriter.swift */; };
+		5CE5C5B6CE206E0C7BCE0409 /* DatePropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C9D0EBB5BDFF7F02310B /* DatePropertyWriter.swift */; };
+		5CE5C60CA70FA5B1E499080A /* ObjectPropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C7389EED357DB764995B /* ObjectPropertyWriter.swift */; };
+		5CE5C6BF28A337FE805754E8 /* ArrayPropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5CB09C7B8CD3027EBEA93 /* ArrayPropertyWriter.swift */; };
+		5CE5C8A852ABA431D1C48E34 /* PrimitivePropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C845F91587F36DA52110 /* PrimitivePropertyWriter.swift */; };
+		5CE5CCF70AC478658F73BA49 /* ArrayPropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5CB09C7B8CD3027EBEA93 /* ArrayPropertyWriter.swift */; };
+		5CE5CF16B17D1515B0E62217 /* PrimitivePropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5C845F91587F36DA52110 /* PrimitivePropertyWriter.swift */; };
 		8A10021A1D0FA1C700DA4864 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1002191D0FA1C700DA4864 /* main.swift */; };
 		8A2F88B01D0FFB60002232AA /* Klass+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F88AF1D0FFB60002232AA /* Klass+Parser.swift */; };
 		8A2F88B41D0FFE36002232AA /* Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F88B31D0FFE36002232AA /* Implementation.swift */; };
@@ -38,6 +46,10 @@
 		8A2F88D91D102A1B002232AA /* KlassPropertyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76FA131D0FB8AA00D5EE11 /* KlassPropertyState.swift */; };
 		8A2F88DA1D102A1D002232AA /* KlassState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76FA141D0FB8AA00D5EE11 /* KlassState.swift */; };
 		8A2F88DB1D102A22002232AA /* WhitespaceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76FA151D0FB8AA00D5EE11 /* WhitespaceState.swift */; };
+		8A581D5D1D2AA4BE00FEE318 /* PropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581D5C1D2AA4BE00FEE318 /* PropertyWriter.swift */; };
+		8A581D5E1D2AA4BE00FEE318 /* PropertyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581D5C1D2AA4BE00FEE318 /* PropertyWriter.swift */; };
+		8A581D601D2AA4D800FEE318 /* PropertyWriterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581D5F1D2AA4D800FEE318 /* PropertyWriterFactory.swift */; };
+		8A581D611D2AA4D800FEE318 /* PropertyWriterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581D5F1D2AA4D800FEE318 /* PropertyWriterFactory.swift */; };
 		8A76F9C21D0FAC6E00D5EE11 /* FileListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C11D0FAC6E00D5EE11 /* FileListFetcher.swift */; };
 		8A76F9FE1D0FB3CE00D5EE11 /* Property+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9FD1D0FB3CE00D5EE11 /* Property+Parser.swift */; };
 		8A76FA351D0FB8AA00D5EE11 /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76FA0C1D0FB8AA00D5EE11 /* Compiler.swift */; };
@@ -99,6 +111,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5CE5C7389EED357DB764995B /* ObjectPropertyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectPropertyWriter.swift; sourceTree = "<group>"; };
+		5CE5C845F91587F36DA52110 /* PrimitivePropertyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimitivePropertyWriter.swift; sourceTree = "<group>"; };
+		5CE5C9D0EBB5BDFF7F02310B /* DatePropertyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePropertyWriter.swift; sourceTree = "<group>"; };
+		5CE5CB09C7B8CD3027EBEA93 /* ArrayPropertyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPropertyWriter.swift; sourceTree = "<group>"; };
 		8A1002161D0FA1C700DA4864 /* ParserGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ParserGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A1002191D0FA1C700DA4864 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8A2F88AF1D0FFB60002232AA /* Klass+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Klass+Parser.swift"; sourceTree = "<group>"; };
@@ -106,6 +122,8 @@
 		8A2F88B91D102587002232AA /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2F88BB1D102587002232AA /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8A2F88BD1D102587002232AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A581D5C1D2AA4BE00FEE318 /* PropertyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWriter.swift; sourceTree = "<group>"; };
+		8A581D5F1D2AA4D800FEE318 /* PropertyWriterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWriterFactory.swift; sourceTree = "<group>"; };
 		8A76F9C11D0FAC6E00D5EE11 /* FileListFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListFetcher.swift; sourceTree = "<group>"; };
 		8A76F9FD1D0FB3CE00D5EE11 /* Property+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Property+Parser.swift"; sourceTree = "<group>"; };
 		8A76FA051D0FB8AA00D5EE11 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -199,6 +217,17 @@
 				8A2F88BD1D102587002232AA /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		8A581D621D2AA70300FEE318 /* PropertyWriter */ = {
+			isa = PBXGroup;
+			children = (
+				5CE5C845F91587F36DA52110 /* PrimitivePropertyWriter.swift */,
+				5CE5C9D0EBB5BDFF7F02310B /* DatePropertyWriter.swift */,
+				5CE5C7389EED357DB764995B /* ObjectPropertyWriter.swift */,
+				5CE5CB09C7B8CD3027EBEA93 /* ArrayPropertyWriter.swift */,
+			);
+			path = PropertyWriter;
 			sourceTree = "<group>";
 		};
 		8A76F9C31D0FAD6000D5EE11 /* Model */ = {
@@ -359,8 +388,8 @@
 		8A8EFA9C1D0FA317000281CF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8A76F9C31D0FAD6000D5EE11 /* Model */,
 				8ADE998A1D0FA57C00550123 /* Helper */,
+				8A76F9C31D0FAD6000D5EE11 /* Model */,
 				8A8EFA9D1D0FA31D000281CF /* Application.swift */,
 			);
 			path = Classes;
@@ -379,7 +408,10 @@
 		8ADE998C1D0FA57C00550123 /* Writer */ = {
 			isa = PBXGroup;
 			children = (
+				8A581D621D2AA70300FEE318 /* PropertyWriter */,
 				8ADE998F1D0FA57C00550123 /* ParserImplementationWriter.swift */,
+				8A581D5C1D2AA4BE00FEE318 /* PropertyWriter.swift */,
+				8A581D5F1D2AA4D800FEE318 /* PropertyWriterFactory.swift */,
 			);
 			path = Writer;
 			sourceTree = "<group>";
@@ -522,7 +554,9 @@
 				8A76FA4A1D0FB8AA00D5EE11 /* PropertyType.swift in Sources */,
 				8A76FA401D0FB8AA00D5EE11 /* String+Line.swift in Sources */,
 				8A76FA351D0FB8AA00D5EE11 /* Compiler.swift in Sources */,
+				8A581D5D1D2AA4BE00FEE318 /* PropertyWriter.swift in Sources */,
 				8A76FA441D0FB8AA00D5EE11 /* ArgumentType.swift in Sources */,
+				8A581D601D2AA4D800FEE318 /* PropertyWriterFactory.swift in Sources */,
 				8A76FA481D0FB8AA00D5EE11 /* ParseException.swift in Sources */,
 				8A76FA3D1D0FB8AA00D5EE11 /* KlassParser.swift in Sources */,
 				8A76FA451D0FB8AA00D5EE11 /* InlineComment.swift in Sources */,
@@ -530,6 +564,10 @@
 				8A76FA3F1D0FB8AA00D5EE11 /* PropertyTypeParser.swift in Sources */,
 				8A76FA421D0FB8AA00D5EE11 /* Annotation.swift in Sources */,
 				8A76FA4B1D0FB8AA00D5EE11 /* SourceCodeFile.swift in Sources */,
+				5CE5CF16B17D1515B0E62217 /* PrimitivePropertyWriter.swift in Sources */,
+				5CE5C5B6CE206E0C7BCE0409 /* DatePropertyWriter.swift in Sources */,
+				5CE5C60CA70FA5B1E499080A /* ObjectPropertyWriter.swift in Sources */,
+				5CE5CCF70AC478658F73BA49 /* ArrayPropertyWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,10 +588,12 @@
 				8A2F88C11D102653002232AA /* ParserImplementationWriter.swift in Sources */,
 				8A2F88D71D102A16002232AA /* CompilerState.swift in Sources */,
 				8A2F88CF1D1027C9002232AA /* Implementation.swift in Sources */,
+				8A581D5E1D2AA4BE00FEE318 /* PropertyWriter.swift in Sources */,
 				8A2F88D81D102A18002232AA /* KlassMethodState.swift in Sources */,
 				8A2F88C21D102690002232AA /* Klass.swift in Sources */,
 				8A2F88C61D1026B3002232AA /* InlineComment.swift in Sources */,
 				8A2F88CC1D1026B3002232AA /* SourceCodeLine.swift in Sources */,
+				8A581D611D2AA4D800FEE318 /* PropertyWriterFactory.swift in Sources */,
 				8A2F88DA1D102A1D002232AA /* KlassState.swift in Sources */,
 				8A2F88DB1D102A22002232AA /* WhitespaceState.swift in Sources */,
 				8A2F88C31D1026B3002232AA /* Annotation.swift in Sources */,
@@ -565,6 +605,10 @@
 				8A2F88C51D1026B3002232AA /* ArgumentType.swift in Sources */,
 				8A2F88D21D102A05002232AA /* PropertyTypeParser.swift in Sources */,
 				8A2F88BC1D102587002232AA /* Tests.swift in Sources */,
+				5CE5C8A852ABA431D1C48E34 /* PrimitivePropertyWriter.swift in Sources */,
+				5CE5C17939DBF81CC55932B4 /* DatePropertyWriter.swift in Sources */,
+				5CE5C4541F44C2F40F1A6643 /* ObjectPropertyWriter.swift in Sources */,
+				5CE5C6BF28A337FE805754E8 /* ArrayPropertyWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +763,7 @@
 				8A2F88C01D102587002232AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

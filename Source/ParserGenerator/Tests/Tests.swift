@@ -21,7 +21,7 @@ class Tests: XCTestCase {
             klasses: self.allClasses(),
             projectName: "Test"
         )
-        
+
         XCTAssertEqual(writtenCode, self.expectedCode())
     }
     
@@ -38,7 +38,8 @@ class Tests: XCTestCase {
                         Annotation(name: "mandatory", value: nil),
                         Annotation(name: "json", value: "my_name")
                     ],
-                    constant: false
+                    constant: false,
+                    mandatory: false
                 ),
                 Property(
                     name: "phoneList",
@@ -46,7 +47,8 @@ class Tests: XCTestCase {
                     annotations: [
                         Annotation(name: "json", value: "phone_list")
                     ],
-                    constant: false
+                    constant: false,
+                    mandatory: true
                 )
             ],
             annotations: [
@@ -70,7 +72,8 @@ class Tests: XCTestCase {
                             Annotation(name: "json", value: "numeric_value"),
                             Annotation(name: "mandatory", value: nil)
                         ],
-                        constant: false
+                        constant: false,
+                        mandatory: true
                     ),
                     Property(
                         name: "humanReadable",
@@ -78,7 +81,9 @@ class Tests: XCTestCase {
                         annotations: [
                             Annotation(name: "json", value: "human_readable")
                         ],
-                        constant: false)
+                        constant: false,
+                        mandatory: true
+                    )
                 ],
                 annotations: [
                     Annotation(name: "model", value: nil)
@@ -107,12 +112,10 @@ class Tests: XCTestCase {
             .addLine("    override func parseObject(data: [String : JSON]) -> Account?")
             .addLine("    {")
             .addLine("        guard")
-            .addLine("            let name = data[\"my_name\"]?.string")
+            .addLine("            let phoneList: [Phone] = (nil != data[\"phone_list\"]) ? PhoneParser().parse(body: data[\"phone_list\"]!) : nil")
             .addLine("        else { return nil }")
             .addBlankLine()
-            .addLine("        if nil != data[\"phone_list\"] {")
-            .addLine("            let phoneList = PhoneParser.parse(data[\"phone_list\"]!)")
-            .addLine("        }")
+            .addLine("        let name: String? = data[\"my_name\"].string")
             .addBlankLine()
             .addLine("        let object = Account()")
             .addLine("        object.name = name")

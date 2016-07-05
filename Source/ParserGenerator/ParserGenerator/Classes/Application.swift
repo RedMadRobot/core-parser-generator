@@ -74,7 +74,6 @@ class Application {
         )
         
         print("Parsers written: " + String(parsersWritten))
-        
         return 0
     }
     
@@ -196,7 +195,12 @@ private extension Application {
         return klass
     }
     
-    func tryWriteParsers(forKlasses klasses: [Klass], outputFolder: String, projectName: String, debugMode: Bool) -> Int
+    func tryWriteParsers(
+        forKlasses klasses: [Klass],
+                   outputFolder: String,
+                   projectName: String,
+                   debugMode: Bool
+        ) -> Int
     {
         let implementations: [Implementation] = klasses.flatMap { (k: Klass) -> Implementation? in
             do {

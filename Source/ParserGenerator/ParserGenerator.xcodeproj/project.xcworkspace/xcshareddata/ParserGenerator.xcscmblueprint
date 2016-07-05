@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5CD04192A7FF8081D8632BE43DF002F225A17995",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5CD04192A7FF8081D8632BE43DF002F225A17995" : 0,
+    "87FD3BC6D3E17C3D75400C87E1BACDC7CB4DFFF9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CB4A3C8D-C1D8-4671-A467-480167D2BDD0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5CD04192A7FF8081D8632BE43DF002F225A17995" : "ParserGenerator\/",
+    "87FD3BC6D3E17C3D75400C87E1BACDC7CB4DFFF9" : "ParserGenerator\/Source\/ParserGenerator\/ParserGenerator\/Libraries\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ParserGenerator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Source\/ParserGenerator\/ParserGenerator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.redmadrobot.com:foundation-ios\/ParserGenerator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5CD04192A7FF8081D8632BE43DF002F225A17995"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.redmadrobot.com:foundation-ios\/ModelCompiler.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "87FD3BC6D3E17C3D75400C87E1BACDC7CB4DFFF9"
+    }
+  ]
+}

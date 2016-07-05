@@ -23,18 +23,5 @@ extension Property {
         
         return key
     }
-    
-    func mandatory() -> Bool
-    {
-        var mandatory: Bool = false
         
-        self.annotations.forEach { (a: Annotation) in
-            if a.name == "mandatory" {
-                mandatory = true
-            }
-        }
-        
-        return mandatory
-    }
-    
 }
