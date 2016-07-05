@@ -15,7 +15,7 @@ class DatePropertyWriter: PropertyWriter {
         let valueSuffix: String = self.property.mandatory ? "Value" : ""
 
         return [
-            optTab + tab + tab + "let \(self.property.name): NSDate\(optMark) = (nil != data[\"\(self.property.jsonKey())\"].\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix))) ? NSDate = NSDate(timeIntervalSince1970: data[\"\(self.property.jsonKey()!)\"].\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)) : nil"
+            optTab + tab + tab + "let \(self.property.name): NSDate\(optMark) = (nil != data[\"\(self.property.jsonKey())\"].\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix))) ? NSDate(timeIntervalSince1970: data[\"\(self.property.jsonKey()!)\"]!.\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)) : nil"
         ]
     }
 

@@ -15,7 +15,7 @@ class PrimitivePropertyWriter: PropertyWriter {
         let valueSuffix: String = self.property.mandatory ? "Value" : ""
 
         return [
-            optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = data[\"\(self.property.jsonKey()!)\"].\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)"
+            optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = data[\"\(self.property.jsonKey()!)\"]?.\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)"
         ]
     }
 
