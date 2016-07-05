@@ -174,3 +174,4 @@ Pods
 # ref. http://stackoverflow.com/questions/18340453/should-xccheckout-files-in-xcode5-be-ignored-under-vcs
 *.xccheckout
 Source/ModelCompiler/.idea
+Source/ParserGenerator/.idea
