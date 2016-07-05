@@ -46,6 +46,11 @@ class ParserImplementationWriter {
         let headImportsParseObject: String = headImports
             .addLine("class \(klass.name)Parser: JSONParser<\(klass.name)> {")
             .addBlankLine()
+            .addLine("    override init(fulfiller: Fulfiller<\(klass.name)>?)")
+            .addLine("    {")
+            .addLine("        super.init(fulfiller: fulfiller)")
+            .addLine("    }")
+            .addBlankLine()
             .addLine(tab + "override func parseObject(data: [String : JSON]) -> \(klass.name)?")
             .addLine(tab + "{")
             .addLine(tab + tab + "guard")
