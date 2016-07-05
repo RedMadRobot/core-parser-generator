@@ -39,7 +39,8 @@ class Tests: XCTestCase {
                         Annotation(name: "json", value: "my_name")
                     ],
                     constant: false,
-                    mandatory: false
+                    mandatory: false,
+                    declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 15, line: "   var name: String?")
                 ),
                 Property(
                     name: "phoneList",
@@ -48,12 +49,14 @@ class Tests: XCTestCase {
                         Annotation(name: "json", value: "phone_list")
                     ],
                     constant: false,
-                    mandatory: true
+                    mandatory: true,
+                    declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 25, line: "   var phoneList: [Phone]")
                 )
             ],
             annotations: [
                 Annotation(name: "model", value: nil)
-            ]
+            ],
+            declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 0, line: "class Account: Entity")
         )
     }
     
@@ -73,7 +76,8 @@ class Tests: XCTestCase {
                             Annotation(name: "mandatory", value: nil)
                         ],
                         constant: false,
-                        mandatory: true
+                        mandatory: true,
+                        declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 15, line: "    var numeric: Int")
                     ),
                     Property(
                         name: "humanReadable",
@@ -82,12 +86,14 @@ class Tests: XCTestCase {
                             Annotation(name: "json", value: "human_readable")
                         ],
                         constant: false,
-                        mandatory: true
+                        mandatory: true,
+                        declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 25, line: "    var humanReadable: String")
                     )
                 ],
                 annotations: [
                     Annotation(name: "model", value: nil)
-                ]
+                ],
+                declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 0, line: "class Phone")
             )
         ]
     }

@@ -145,7 +145,7 @@ private extension Application {
             }
             
             let sourceCode: String = try! String(contentsOfFile: filePath)
-            let klass: Klass? = self.tryCompileSourceCode(sourceCode, filename: filename, debugMode: debugMode)
+            let klass: Klass? = self.tryCompileSourceCode(sourceCode, filepath: filePath, debugMode: debugMode)
             
             return klass
         })
@@ -158,14 +158,14 @@ private extension Application {
         }
     }
     
-    func tryCompileSourceCode(code: String, filename: String, debugMode: Bool) -> Klass?
+    func tryCompileSourceCode(code: String, filepath: String, debugMode: Bool) -> Klass?
     {
         var sourceCodeLines: [SourceCodeLine] = []
         
         for (index, line) in code.lines().enumerate() {
             sourceCodeLines.append(
                 SourceCodeLine(
-                    filename: filename,
+                    filename: filepath,
                     lineNumber: index,
                     line: line
                 )
@@ -173,11 +173,11 @@ private extension Application {
         }
         
         let sourceCodeFile: SourceCodeFile = SourceCodeFile(
-            filename: filename,
+            filename: filepath,
             lines: sourceCodeLines
         )
         
-        return self.tryCompileSourceCode(sourceCodeFile, filename: filename, debugMode: debugMode)
+        return self.tryCompileSourceCode(sourceCodeFile, filename: filepath, debugMode: debugMode)
     }
     
     func tryCompileSourceCode(code: SourceCodeFile, filename: String, debugMode: Bool) -> Klass?
