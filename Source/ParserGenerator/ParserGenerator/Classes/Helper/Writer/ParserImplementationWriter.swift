@@ -97,6 +97,7 @@ class ParserImplementationWriter {
         let fillObject: String = allOptional
             .addLine(tab + tab + "let object = \(klass.name)(")
             .append(try self.write(constructorArguments: constructorArguments, forKlass: klass))
+            .addBlankLine()
             .addLine(tab + tab + ")")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
@@ -138,7 +139,17 @@ private extension ParserImplementationWriter {
         return try klassConstructor.arguments
             .reduce("") { (initial: String, argument: Argument) -> String in
                 if let constructorArgument = arguments[argument.name] {
-                    return tab + tab + tab + constructorArgument + "\n"
+                    if initial.isEmpty {
+                        return tab + tab + tab + constructorArgument
+                    } else {
+                        return initial + ",\n" + tab + tab + tab + constructorArgument
+                    }
+                } else if !argument.mandatory {
+                    if initial.isEmpty {
+                        return tab + tab + tab + argument.name + ": nil"
+                    } else {
+                        return initial + ",\n" + tab + tab + tab + argument.name + ": nil"
+                    }
                 } else {
                     throw ParseException(
                         filename: argument.declaration.filename,
