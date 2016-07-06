@@ -99,7 +99,7 @@ class ParserImplementationWriter {
             .append(try self.write(constructorArguments: constructorArguments, forKlass: klass))
             .addLine(tab + tab + ")")
             .append(fillObjectStatements.joinWithSeparator("\n"))
-            .addBlankLine()
+            .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
             .addLine(tab + tab + "return object")
             .addLine(tab + "}")
