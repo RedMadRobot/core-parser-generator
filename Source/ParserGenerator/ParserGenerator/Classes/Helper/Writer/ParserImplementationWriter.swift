@@ -87,9 +87,9 @@ class ParserImplementationWriter {
             .append(guardStatements.joinWithSeparator("\n"))
             .append(guardStatements.count > 0 ? "\n" : "")
             .append(guardStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
+            .append(guardStatements.count > 0 ? "\n" : "")
 
         let allOptional: String = allGuard
-            .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.joinWithSeparator("\n"))
             .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
@@ -100,7 +100,7 @@ class ParserImplementationWriter {
         let fillObject: String = allOptional
             .addLine(tab + tab + "let object = \(klass.name)(")
             .append(constructorArgumentsLine)
-            .append(constructorArgumentsLine.isEmpty ? tab + tab + ")" : "\n)")
+            .append(constructorArgumentsLine.isEmpty ? ")" : tab + tab + "\n)")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
