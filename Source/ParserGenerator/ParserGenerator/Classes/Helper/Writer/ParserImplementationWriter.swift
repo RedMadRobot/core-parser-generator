@@ -98,7 +98,8 @@ class ParserImplementationWriter {
             = try self.write(constructorArguments: constructorArguments, forKlass: klass)
 
         let fillObject: String = allOptional
-            .addLine(tab + tab + "let object = \(klass.name)(")
+            .append(tab + tab + "let object = \(klass.name)(")
+            .append(constructorArgumentsLine.isEmpty ? "" : "\n")
             .append(constructorArgumentsLine)
             .append(constructorArgumentsLine.isEmpty ? ")" : "\n" + tab + tab + ")")
             .append(fillObjectStatements.joinWithSeparator("\n"))
