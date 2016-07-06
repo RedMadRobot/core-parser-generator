@@ -83,13 +83,13 @@ class ParserImplementationWriter {
         }
         
         let allGuard: String = headImportsParseObject
-            .append(optionalStatements.count > 0 ? tab + tab + "guard\n" : "")
+            .append(guardStatements.count > 0 ? tab + tab + "guard\n" : "")
             .append(guardStatements.joinWithSeparator("\n"))
-            .append(optionalStatements.count > 0 ? "\n" : "")
-            .append(optionalStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
-            .append(optionalStatements.count > 0 ? "\n" : "")
+            .append(guardStatements.count > 0 ? "\n" : "")
+            .append(guardStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
 
         let allOptional: String = allGuard
+            .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.joinWithSeparator("\n"))
             .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
