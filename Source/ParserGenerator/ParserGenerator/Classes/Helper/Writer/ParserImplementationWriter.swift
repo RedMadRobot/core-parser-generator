@@ -100,7 +100,7 @@ class ParserImplementationWriter {
         let fillObject: String = allOptional
             .addLine(tab + tab + "let object = \(klass.name)(")
             .append(constructorArgumentsLine)
-            .append(constructorArgumentsLine.isEmpty ? ")" : tab + tab + "\n)")
+            .append(constructorArgumentsLine.isEmpty ? ")" : "\n" + tab + tab + ")")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
