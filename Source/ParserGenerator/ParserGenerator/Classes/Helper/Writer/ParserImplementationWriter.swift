@@ -85,13 +85,13 @@ class ParserImplementationWriter {
         let allGuard: String = headImportsParseObject
             .append(optionalStatements.count > 0 ? tab + tab + "guard\n" : "")
             .append(guardStatements.joinWithSeparator("\n"))
-            .addBlankLine()
+            .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
 
         let allOptional: String = allGuard
             .append(optionalStatements.joinWithSeparator("\n"))
-            .addBlankLine()
+            .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
 
         let constructorArgumentsLine: String
@@ -100,8 +100,7 @@ class ParserImplementationWriter {
         let fillObject: String = allOptional
             .addLine(tab + tab + "let object = \(klass.name)(")
             .append(constructorArgumentsLine)
-            .append(constructorArgumentsLine.isEmpty ? "" : "\n")
-            .addLine(tab + tab + ")")
+            .append(constructorArgumentsLine.isEmpty ? tab + tab + ")" : "\n)")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
