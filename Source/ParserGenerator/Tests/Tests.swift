@@ -56,7 +56,8 @@ class Tests: XCTestCase {
             annotations: [
                 Annotation(name: "model", value: nil)
             ],
-            declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 0, line: "class Account: Entity")
+            declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 0, line: "class Account: Entity"),
+            methods: []
         )
     }
     
@@ -93,7 +94,8 @@ class Tests: XCTestCase {
                 annotations: [
                     Annotation(name: "model", value: nil)
                 ],
-                declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 0, line: "class Phone")
+                declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 0, line: "class Phone"),
+                methods: []
             )
         ]
     }
@@ -113,7 +115,8 @@ class Tests: XCTestCase {
             .addLine("import CoreParser")
             .addBlankLine()
             .addBlankLine()
-            .addLine("class AccountParser: JSONParser<Account> {")
+            .addLine("class AccountParser: JSONParser<Account>")
+            .addLine("{")
             .addBlankLine()
             .addLine("    override init(fulfiller: Fulfiller<Account>?)")
             .addLine("    {")
