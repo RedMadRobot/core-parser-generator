@@ -11,8 +11,9 @@ import Foundation
 
 class PropertyWriterFactory {
 
-    internal func createWriterForProperty(
-        property: Property,
+    internal func createWriter(
+        forProperty property: Property,
+        currentKlass: Klass,
         availableKlasses: [Klass]
     ) -> PropertyWriter
     {
@@ -20,26 +21,38 @@ class PropertyWriterFactory {
             case .IntType, .BoolType, .FloatType, .DoubleType, .StringType:
                 return PrimitivePropertyWriter(
                     property: property,
+                    currentKlass: currentKlass,
                     availableKlasses: availableKlasses
                 )
 
             case .DateType:
                 return DatePropertyWriter(
                     property: property,
+                    currentKlass: currentKlass,
                     availableKlasses: availableKlasses
                 )
 
             case .ObjectType:
                 return ObjectPropertyWriter(
                     property: property,
+                    currentKlass: currentKlass,
                     availableKlasses: availableKlasses
                 )
 
             case let .ArrayType(itemType):
-                return ArrayPropertyWriter(property: property, availableKlasses: availableKlasses, itemType: itemType)
+                return ArrayPropertyWriter(
+                    property: property,
+                    currentKlass: currentKlass,
+                    availableKlasses: availableKlasses,
+                    itemType: itemType
+                )
 
-            case let .MapType(pair):
-                return PropertyWriter(property: property, availableKlasses: availableKlasses)
+            case .MapType:
+                return PropertyWriter(
+                    property: property,
+                    currentKlass: currentKlass,
+                    availableKlasses: availableKlasses
+                )
         }
     }
 

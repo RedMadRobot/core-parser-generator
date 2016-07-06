@@ -14,12 +14,13 @@ class ArrayPropertyWriter: PropertyWriter {
 
     internal init(
         property: Property,
+        currentKlass: Klass,
         availableKlasses: [Klass],
         itemType: PropertyType
     )
     {
         self.itemType = itemType
-        super.init(property: property, availableKlasses: availableKlasses)
+        super.init(property: property, currentKlass: currentKlass, availableKlasses: availableKlasses)
     }
 
     override func parseStatements() throws -> [String]

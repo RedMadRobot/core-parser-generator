@@ -15,14 +15,18 @@ class Tests: XCTestCase {
     func testWriter_normalInput_expectedOutput()
     {
         let writer = ParserImplementationWriter()
-        
-        let writtenCode: String = try! writer.writeImplementation(
-            self.mockKlass(),
-            klasses: self.allClasses(),
-            projectName: "Test"
-        )
 
-        XCTAssertEqual(writtenCode, self.expectedCode())
+        do {
+            let writtenCode: String = try writer.writeImplementation(
+                self.mockKlass(),
+                klasses: self.allClasses(),
+                projectName: "Test"
+            )
+            XCTAssertEqual(writtenCode, self.expectedCode())
+        } catch let error {
+            print(error)
+            XCTAssertTrue(false)
+        }
     }
     
     func mockKlass() -> Klass
@@ -57,7 +61,37 @@ class Tests: XCTestCase {
                 Annotation(name: "model", value: nil)
             ],
             declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 0, line: "class Account: Entity"),
-            methods: []
+            methods: [
+                Method(
+                    name: "init",
+                    arguments: [
+                        Argument(
+                            name: "phoneList",
+                            type: PropertyType.ArrayType(item: PropertyType.ObjectType(name: "Phone")),
+                            mandatory: true,
+                            annotations: [],
+                            declaration: SourceCodeLine(
+                                filename: "Account.swift",
+                                lineNumber: 0,
+                                line: "phoneList: [Phone]"
+                            )
+                        )
+                    ],
+                    annotations: [],
+                    returnType: .ObjectType(name: "Self"),
+                    declaration: SourceCodeLine(
+                        filename: "Account.swift",
+                        lineNumber: 0,
+                        line: "init("),
+                    body: [
+                        SourceCodeLine(
+                            filename: "Account.swift",
+                            lineNumber: 0,
+                            line: "self.phoneList = phoneList"
+                        )
+                    ]
+                )
+            ]
         )
     }
     
@@ -131,9 +165,10 @@ class Tests: XCTestCase {
             .addBlankLine()
             .addLine("        let name: String? = data[\"my_name\"]?.string")
             .addBlankLine()
-            .addLine("        let object = Account()")
+            .addLine("        let object = Account(")
+            .addLine("            phoneList: phoneList")
+            .addLine("        )")
             .addLine("        object.name = name")
-            .addLine("        object.phoneList = phoneList")
             .addBlankLine()
             .addLine("        return object")
             .addLine("    }")
