@@ -62,7 +62,7 @@ class ParserImplementationWriter {
 
         var constructorArguments: [String : String] = [:]
 
-        for property in klass.properties {
+        for property in klass.properties.filter({ (property: Property) -> Bool in return nil != property.jsonKey() }) {
             let propertyWriter: PropertyWriter =
                 PropertyWriterFactory().createWriter(
                     forProperty: property,
