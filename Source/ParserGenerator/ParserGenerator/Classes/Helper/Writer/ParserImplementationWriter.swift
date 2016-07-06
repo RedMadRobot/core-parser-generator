@@ -54,8 +54,7 @@ class ParserImplementationWriter {
             .addBlankLine()
             .addLine(tab + "override func parseObject(data: [String : JSON]) -> \(klass.name)?")
             .addLine(tab + "{")
-            .addLine(tab + tab + "guard")
-        
+
         var guardStatements:      [String] = []
         var optionalStatements:   [String] = []
         var fillObjectStatements: [String] = []
@@ -84,9 +83,10 @@ class ParserImplementationWriter {
         }
         
         let allGuard: String = headImportsParseObject
+            .append(optionalStatements.count > 0 ? tab + tab + "guard\n" : "")
             .append(guardStatements.joinWithSeparator("\n"))
             .addBlankLine()
-            .addLine(tab + tab + "else { return nil }")
+            .append(optionalStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
 
         let allOptional: String = allGuard
@@ -94,10 +94,13 @@ class ParserImplementationWriter {
             .addBlankLine()
             .append(optionalStatements.count > 0 ? "\n" : "")
 
+        let constructorArgumentsLine: String
+            = try self.write(constructorArguments: constructorArguments, forKlass: klass)
+
         let fillObject: String = allOptional
             .addLine(tab + tab + "let object = \(klass.name)(")
-            .append(try self.write(constructorArguments: constructorArguments, forKlass: klass))
-            .addBlankLine()
+            .append(constructorArgumentsLine)
+            .append(constructorArgumentsLine.isEmpty ? "" : "\n")
             .addLine(tab + tab + ")")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
