@@ -166,7 +166,7 @@ private extension Application {
             sourceCodeLines.append(
                 SourceCodeLine(
                     filename: filepath,
-                    lineNumber: index,
+                    lineNumber: index + 1,
                     line: line
                 )
             )
