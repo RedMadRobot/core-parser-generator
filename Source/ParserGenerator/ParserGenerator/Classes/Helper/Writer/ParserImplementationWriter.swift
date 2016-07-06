@@ -44,7 +44,8 @@ class ParserImplementationWriter {
             .addBlankLine()
         
         let headImportsParseObject: String = headImports
-            .addLine("class \(klass.name)Parser: JSONParser<\(klass.name)> {")
+            .addLine("class \(klass.name)Parser: JSONParser<\(klass.name)>")
+            .addLine("{")
             .addBlankLine()
             .addLine("    override init(fulfiller: Fulfiller<\(klass.name)>?)")
             .addLine("    {")
