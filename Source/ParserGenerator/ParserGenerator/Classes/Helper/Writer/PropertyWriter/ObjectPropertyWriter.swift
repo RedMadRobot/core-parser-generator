@@ -15,7 +15,7 @@ class ObjectPropertyWriter: PropertyWriter {
     {
         if self.checkIfParserAvailableInScope(forKlass: self.property.type.description) {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.property.type)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.property.type)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!).first : nil"
             ]
         } else {
             throw ParseException(
