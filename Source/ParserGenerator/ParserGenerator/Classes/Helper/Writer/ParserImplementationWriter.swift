@@ -173,13 +173,18 @@ private extension ParserImplementationWriter {
         usingProperties properties: [Property]
     ) throws -> String
     {
-        return try constructor.arguments.reduce("") { (initial: String, argument: Argument) -> String in
-            let prefix: String = initial.isEmpty ? tab + tab + tab : initial + ",\n" + tab + tab + tab
+        return try constructor.arguments.reduce("")
+        {
+            (initial: String, argument: Argument) -> String in
+            let prefix: String
+            = initial.isEmpty ? tab + tab + tab : initial + ",\n" + tab + tab + tab
     
             if properties.contains(property: argument.name) {
                 return prefix + "\(argument.name): \(argument.name)"
             } else if !argument.mandatory {
                 return prefix + "\(argument.name): nil"
+            } else if argument.declaration.line.truncateFromWord("//").containsString("=") {
+                return initial
             } else {
                 throw CompilerMessage(
                     filename: constructor.declaration.filename,
