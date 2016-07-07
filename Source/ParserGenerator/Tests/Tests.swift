@@ -67,6 +67,7 @@ class Tests: XCTestCase {
                     arguments: [
                         Argument(
                             name: "phoneList",
+                            bodyName: "phoneList",
                             type: PropertyType.ArrayType(item: PropertyType.ObjectType(name: "Phone")),
                             mandatory: true,
                             annotations: [],
