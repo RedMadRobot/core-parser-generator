@@ -31,54 +31,10 @@ class PropertyWriter {
         return []
     }
     
-    internal func fillObjectStatements() throws -> [String]
-    {
-        if self.isPropertyInitializedThroughConstructor() {
-            return []
-        }
-
-        return [
-            tab + tab + "object.\(self.property.name) = \(self.property.name)"
-        ]
-    }
-
-    internal func constructorArgument() -> String?
-    {
-        if self.isPropertyInitializedThroughConstructor() {
-            return "\(self.property.name): \(self.property.name)"
-        }
-
-        return nil
-    }
-
     internal func checkIfParserAvailableInScope(forKlass klassName: String) -> Bool
     {
         for klass in self.availableKlasses {
             if klass.name == klassName {
-                return true
-            }
-        }
-
-        return false
-    }
-
-}
-
-private extension PropertyWriter {
-
-    func isPropertyInitializedThroughConstructor() -> Bool
-    {
-        var constructorBody: [SourceCodeLine] = []
-
-        for method in self.currentKlass.methods {
-            if method.name == "init" {
-                constructorBody = method.body
-                break
-            }
-        }
-
-        for line in constructorBody {
-            if line.line.containsString("self.\(self.property.name) = ") {
                 return true
             }
         }

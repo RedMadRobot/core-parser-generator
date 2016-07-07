@@ -23,5 +23,25 @@ extension Property {
         
         return key
     }
+
+    func hasDefaultValue() -> Bool
+    {
+        return self.declaration.line.truncateFromWord("//").containsString("=")
+    }
+    
+}
+
+extension Array where Element: Property {
+    
+    func contains(property property: String) -> Bool
+    {
+        for element in self {
+            if element.name == property {
+                return true
+            }
+        }
         
+        return false
+    }
+    
 }

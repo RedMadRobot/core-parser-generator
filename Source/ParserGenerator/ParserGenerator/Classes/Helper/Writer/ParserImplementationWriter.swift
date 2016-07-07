@@ -15,7 +15,7 @@ let tab = "    "
  Генератор реализации парсера.
  */
 class ParserImplementationWriter {
-    
+
     // MARK: - Публичные методы
     
     /**
@@ -27,6 +27,9 @@ class ParserImplementationWriter {
         projectName: String
     ) throws -> String
     {
+        let properties = klass.properties.filter { return nil != $0.jsonKey() }
+        let constructor: Method = try self.chooseConstructor(fromKlass: klass, forProperties: properties)
+
         let head: String = ""
             .addLine("//")
             .addLine("//  \(klass.name)Parser.swift")
@@ -59,9 +62,17 @@ class ParserImplementationWriter {
         var optionalStatements:   [String] = []
         var fillObjectStatements: [String] = []
 
-        var constructorArguments: [String : String] = [:]
+        for property in properties {
+            if property.constant {
+                if property.hasDefaultValue() {
+                    throw CompilerMessage(
+                        filename: property.declaration.filename,
+                        lineNumber: property.declaration.lineNumber,
+                        message: "[ParserGenerator] Initialized constant property cannot be filled from JSON"
+                    )
+                }
+            }
 
-        for property in klass.properties.filter({ (property: Property) -> Bool in return nil != property.jsonKey() }) {
             let propertyWriter: PropertyWriter =
                 PropertyWriterFactory().createWriter(
                     forProperty: property,
@@ -73,18 +84,16 @@ class ParserImplementationWriter {
                 try guardStatements += propertyWriter.parseStatements()
             } else {
                 try optionalStatements += propertyWriter.parseStatements()
-            }
-
-            try fillObjectStatements += propertyWriter.fillObjectStatements()
-
-            if let constructorArgument = propertyWriter.constructorArgument() {
-                constructorArguments[property.name] = constructorArgument
+                
+                if !constructor.arguments.contains(argument: property.name) {
+                    fillObjectStatements += [ tab + tab + "object.\(property.name) = \(property.name)" ]
+                }
             }
         }
         
         let allGuard: String = headImportsParseObject
             .append(guardStatements.count > 0 ? tab + tab + "guard\n" : "")
-            .append(guardStatements.joinWithSeparator("\n"))
+            .append(guardStatements.joinWithSeparator(",\n"))
             .append(guardStatements.count > 0 ? "\n" : "")
             .append(guardStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
             .append(guardStatements.count > 0 ? "\n" : "")
@@ -95,7 +104,7 @@ class ParserImplementationWriter {
             .append(optionalStatements.count > 0 ? "\n" : "")
 
         let constructorArgumentsLine: String
-            = try self.write(constructorArguments: constructorArguments, forKlass: klass)
+            = try self.writeArguments(forConstructor: constructor, usingProperties: properties)
 
         let fillObject: String = allOptional
             .append(tab + tab + "let object = \(klass.name)(")
@@ -116,52 +125,69 @@ class ParserImplementationWriter {
 }
 
 private extension ParserImplementationWriter {
-
-    func write(
-        constructorArguments arguments: [String : String],
-        forKlass klass: Klass
-    ) throws -> String
+    
+    func chooseConstructor(
+        fromKlass klass: Klass,
+        forProperties properties: [Property]
+    ) throws -> Method
     {
-        var constructor: Method? = nil
-
-        for method in klass.methods {
-            if method.name == "init" {
-                constructor = method
-                break
-            }
-        }
-
-        guard let klassConstructor: Method = constructor
-        else {
-            throw CompilerMessage(
-                filename: klass.declaration.filename,
-                lineNumber: klass.declaration.lineNumber,
-                message: "[ParserGenerator] Class does not have constructor"
-            )
-        }
-
-        return try klassConstructor.arguments
-            .reduce("") { (initial: String, argument: Argument) -> String in
-                if let constructorArgument = arguments[argument.name] {
-                    if initial.isEmpty {
-                        return tab + tab + tab + constructorArgument
-                    } else {
-                        return initial + ",\n" + tab + tab + tab + constructorArgument
+        let constructors: [Method] = klass.methods.filter { return $0.name == "init" }
+        
+        for constructor in constructors {
+            var initsAllProperties: Bool = true
+            for property in properties {
+                if !constructor.arguments.contains(argument: property.name) {
+                    if property.constant {
+                        initsAllProperties = false
+                        break
                     }
-                } else if !argument.mandatory {
-                    if initial.isEmpty {
-                        return tab + tab + tab + argument.name + ": nil"
-                    } else {
-                        return initial + ",\n" + tab + tab + tab + argument.name + ": nil"
+                    if property.mandatory {
+                        initsAllProperties = false
+                        break
                     }
-                } else {
-                    throw CompilerMessage(
-                        filename: argument.declaration.filename,
-                        lineNumber: argument.declaration.lineNumber,
-                        message: "[ParserGenerator] Constructor argument could not be initialized"
-                    )
                 }
             }
+            
+            for argument in constructor.arguments {
+                if !properties.contains(property: argument.name) {
+                    if argument.mandatory && !argument.declaration.line.truncateFromWord("//").containsString("=") {
+                        initsAllProperties = false
+                    }
+                }
+            }
+            
+            if initsAllProperties {
+                return constructor
+            }
+        }
+        
+        throw CompilerMessage(
+            filename: klass.declaration.filename,
+            lineNumber: klass.declaration.lineNumber,
+            message: "[ParserGenerator] Parser could not pick an initializer method"
+        )
     }
-
+    
+    func writeArguments(
+        forConstructor constructor: Method,
+        usingProperties properties: [Property]
+    ) throws -> String
+    {
+        return try constructor.arguments.reduce("") { (initial: String, argument: Argument) -> String in
+            let prefix: String = initial.isEmpty ? tab + tab + tab : initial + ",\n" + tab + tab + tab
+    
+            if properties.contains(property: argument.name) {
+                return prefix + "\(argument.name): \(argument.name)"
+            } else if !argument.mandatory {
+                return prefix + "\(argument.name): nil"
+            } else {
+                throw CompilerMessage(
+                    filename: constructor.declaration.filename,
+                    lineNumber: constructor.declaration.lineNumber,
+                    message: "[ParserGenerator] Parser could not write an initializer method"
+                )
+            }
+        }
+    }
+    
 }
