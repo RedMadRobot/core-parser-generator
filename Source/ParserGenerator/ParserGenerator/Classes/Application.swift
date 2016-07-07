@@ -185,7 +185,7 @@ private extension Application {
         var klass: Klass? = nil
         
         do {
-            klass = try Compiler().compile(file: code)
+            klass = try Compiler(verbose: debugMode).compile(file: code)
         } catch let error as ParseException {
             print(error)
         } catch {

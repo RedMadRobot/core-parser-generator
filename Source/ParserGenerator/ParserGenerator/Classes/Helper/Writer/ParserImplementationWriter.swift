@@ -102,6 +102,7 @@ class ParserImplementationWriter {
             .append(constructorArgumentsLine.isEmpty ? "" : "\n")
             .append(constructorArgumentsLine)
             .append(constructorArgumentsLine.isEmpty ? ")" : "\n" + tab + tab + ")")
+            .append(fillObjectStatements.count > 0 ? "\n" : "")
             .append(fillObjectStatements.joinWithSeparator("\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
