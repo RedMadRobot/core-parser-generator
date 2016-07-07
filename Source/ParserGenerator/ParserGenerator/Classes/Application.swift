@@ -186,7 +186,7 @@ private extension Application {
         
         do {
             klass = try Compiler(verbose: debugMode).compile(file: code)
-        } catch let error as ParseException {
+        } catch let error as CompilerMessage {
             print(error)
         } catch {
             // ничего не делать
@@ -202,7 +202,7 @@ private extension Application {
                    debugMode: Bool
         ) -> Int
     {
-        let implementations: [Implementation] = klasses.flatMap { (k: Klass) -> Implementation? in
+        let implementations: [Implementation] = klasses.filter({ return $0.isModel() }).flatMap { (k: Klass) -> Implementation? in
             do {
                 return Implementation(
                     filename: k.name + "Parser.swift",

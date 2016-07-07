@@ -133,10 +133,10 @@ private extension ParserImplementationWriter {
 
         guard let klassConstructor: Method = constructor
         else {
-            throw ParseException(
+            throw CompilerMessage(
                 filename: klass.declaration.filename,
                 lineNumber: klass.declaration.lineNumber,
-                message: "Class does not have constructor"
+                message: "[ParserGenerator] Class does not have constructor"
             )
         }
 
@@ -155,10 +155,10 @@ private extension ParserImplementationWriter {
                         return initial + ",\n" + tab + tab + tab + argument.name + ": nil"
                     }
                 } else {
-                    throw ParseException(
+                    throw CompilerMessage(
                         filename: argument.declaration.filename,
                         lineNumber: argument.declaration.lineNumber,
-                        message: "Constructor argument could not be initialized"
+                        message: "[ParserGenerator] Constructor argument could not be initialized"
                     )
                 }
             }

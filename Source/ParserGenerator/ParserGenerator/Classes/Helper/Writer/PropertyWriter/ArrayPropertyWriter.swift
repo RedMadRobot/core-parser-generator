@@ -30,10 +30,10 @@ class ArrayPropertyWriter: PropertyWriter {
                 optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
             ]
         } else {
-            throw ParseException(
+            throw CompilerMessage(
                 filename: self.property.declaration.filename,
                 lineNumber: self.property.declaration.lineNumber,
-                message: "Cannot find parser for object type \(self.property.type)"
+                message: "[ParserGenerator] Cannot find parser for object type \(self.property.type)"
             )
         }
 
