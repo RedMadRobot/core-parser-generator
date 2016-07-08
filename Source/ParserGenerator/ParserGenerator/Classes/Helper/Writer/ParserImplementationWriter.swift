@@ -138,7 +138,8 @@ private extension ParserImplementationWriter {
                     CompilerMessage(
                         filename: klass.declaration.filename,
                         lineNumber: klass.declaration.lineNumber,
-                        message: "[ParserGenerator] Parent class is not available in generator's scope"
+                        message: "[ParserGenerator] Parent class is not available in generator's scope",
+                        type: .Warning
                     )
                 )
                 return []
