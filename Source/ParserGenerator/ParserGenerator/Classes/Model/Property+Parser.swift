@@ -13,15 +13,17 @@ extension Property {
     
     func jsonKey() -> String?
     {
-        var key: String? = nil
-        
-        self.annotations.forEach { (a: Annotation) in
-            if a.name == "json" {
-                key = a.value
+        for annotation in self.annotations {
+            if annotation.name == "json" {
+                if let key: String = annotation.value {
+                    return key
+                } else {
+                    return self.name
+                }
             }
         }
         
-        return key
+        return nil
     }
 
     func hasDefaultValue() -> Bool
