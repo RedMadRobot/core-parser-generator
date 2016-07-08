@@ -31,6 +31,20 @@ extension Property {
         return self.declaration.line.truncateFromWord("//").containsString("=")
     }
     
+    func parser() -> String?
+    {
+        for annotation in self.annotations {
+            if annotation.name == "parser" {
+                if let key: String = annotation.value {
+                    return key
+                } else {
+                    return nil
+                }
+            }
+        }
+        return nil
+    }
+    
 }
 
 extension Array where Element: Property {

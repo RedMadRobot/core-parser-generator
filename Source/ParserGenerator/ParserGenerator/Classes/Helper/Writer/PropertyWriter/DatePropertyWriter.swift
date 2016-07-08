@@ -13,7 +13,13 @@ class DatePropertyWriter: PropertyWriter {
     override func parseStatements() throws -> [String]
     {
         let valueSuffix: String = self.property.mandatory ? "Value" : ""
-
+    
+        if let parser: String = self.property.parser() {
+            return [
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(body: data[\"\(self.property.jsonKey()!)\"]!).first : nil"
+            ]
+        }
+        
         return [
             optTab + tab + tab + "let \(self.property.name): NSDate\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]?.\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)) ? NSDate(timeIntervalSince1970: data[\"\(self.property.jsonKey()!)\"]!.\(self.property.type.getSwiftyJsonSuffix())\(valueSuffix)) : nil"
         ]

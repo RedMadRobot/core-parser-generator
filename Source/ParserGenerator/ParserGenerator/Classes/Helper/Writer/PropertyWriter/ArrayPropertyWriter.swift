@@ -27,7 +27,11 @@ class ArrayPropertyWriter: PropertyWriter {
     {
         let valueSuffix: String = self.property.mandatory ? "Value" : ""
     
-        if self.checkIfParserAvailableInScope(forKlass: self.itemType.description) {
+        if let parser: String = self.property.parser() {
+            return [
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+            ]
+        } else if self.checkIfParserAvailableInScope(forKlass: self.itemType.description) {
             return [
                 optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
             ]
