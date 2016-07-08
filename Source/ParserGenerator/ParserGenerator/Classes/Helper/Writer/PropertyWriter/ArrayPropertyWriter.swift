@@ -26,22 +26,12 @@ class ArrayPropertyWriter: PropertyWriter {
     override func parseStatements() throws -> [String]
     {
         let valueSuffix: String = self.property.mandatory ? "Value" : ""
-        let primitiveTypes: [String] = [
-            "Bool",
-            "Float",
-            "Double",
-            "Int",
-            "Int16",
-            "Int32",
-            "Int64",
-            "String"
-        ]
     
         if self.checkIfParserAvailableInScope(forKlass: self.itemType.description) {
             return [
                 optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
             ]
-        } else if primitiveTypes.contains(self.itemType.description) {
+        } else if self.itemType.isPrimitive() {
             return [
                 optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? data[\"\(self.property.jsonKey()!)\"]!.array\(valueSuffix).map({ $0.\(self.itemType.getSwiftyJsonSuffix())Value }) : nil"
             ]
