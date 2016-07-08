@@ -27,7 +27,9 @@ class ParserImplementationWriter {
         projectName: String
     ) throws -> String
     {
-        let properties = klass.properties.filter { return nil != $0.jsonKey() }
+        let properties =
+            (klass.properties + self.getInheritedProperties(forKlass: klass, availableKlasses: klasses)).filter { return nil != $0.jsonKey() }
+
         let constructor: Method = try self.chooseConstructor(fromKlass: klass, forProperties: properties)
 
         let head: String = ""
@@ -126,6 +128,26 @@ class ParserImplementationWriter {
 
 private extension ParserImplementationWriter {
     
+    func getInheritedProperties(forKlass klass: Klass, availableKlasses: [Klass]) -> [Property]
+    {
+        if let parent: String = klass.parent {
+            if let parentKlass = availableKlasses[parent] {
+                return parentKlass.properties + self.getInheritedProperties(forKlass: parentKlass, availableKlasses: availableKlasses)
+            } else {
+                print(
+                    CompilerMessage(
+                        filename: klass.declaration.filename,
+                        lineNumber: klass.declaration.lineNumber,
+                        message: "[ParserGenerator] Parent class is not available in generator's scope"
+                    )
+                )
+                return []
+            }
+        } else {
+            return []
+        }
+    }
+    
     func chooseConstructor(
         fromKlass klass: Klass,
         forProperties properties: [Property]
@@ -164,7 +186,8 @@ private extension ParserImplementationWriter {
         throw CompilerMessage(
             filename: klass.declaration.filename,
             lineNumber: klass.declaration.lineNumber,
-            message: "[ParserGenerator] Parser could not pick an initializer method"
+            message: "[ParserGenerator] Parser could not pick an initializer method: "
+                   + "don't know how to associate init arguments with class properties"
         )
     }
     
@@ -173,11 +196,9 @@ private extension ParserImplementationWriter {
         usingProperties properties: [Property]
     ) throws -> String
     {
-        return try constructor.arguments.reduce("")
-        {
-            (initial: String, argument: Argument) -> String in
+        return try constructor.arguments.reduce("") { (initial: String, argument: Argument) -> String in
             let prefix: String
-            = initial.isEmpty ? tab + tab + tab : initial + ",\n" + tab + tab + tab
+                = initial.isEmpty ? tab + tab + tab : initial + ",\n" + tab + tab + tab
     
             if properties.contains(property: argument.name) {
                 return prefix + "\(argument.name): \(argument.name)"
@@ -187,9 +208,10 @@ private extension ParserImplementationWriter {
                 return initial
             } else {
                 throw CompilerMessage(
-                    filename: constructor.declaration.filename,
-                    lineNumber: constructor.declaration.lineNumber,
-                    message: "[ParserGenerator] Parser could not write an initializer method"
+                    filename: argument.declaration.filename,
+                    lineNumber: argument.declaration.lineNumber,
+                    message: "[ParserGenerator] Parser could not use an initializer method: "
+                           + "don't know how to fill \(argument.name) argument"
                 )
             }
         }

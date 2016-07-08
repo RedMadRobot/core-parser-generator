@@ -202,7 +202,7 @@ private extension Application {
                    debugMode: Bool
         ) -> Int
     {
-        let implementations: [Implementation] = klasses.filter({ return $0.isModel() }).flatMap { (k: Klass) -> Implementation? in
+        let implementations: [Implementation] = klasses.filter({ return !$0.isAbstract() }).flatMap { (k: Klass) -> Implementation? in
             do {
                 return Implementation(
                     filename: k.name + "Parser.swift",

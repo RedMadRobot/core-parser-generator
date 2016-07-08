@@ -16,4 +16,33 @@ extension Klass {
         return self.annotations.contains(Annotation(name: "model", value: nil))
     }
     
+    func isAbstract() -> Bool
+    {
+        return self.isModel() ? self.annotations.contains(Annotation(name: "abstract", value: nil)) : true
+    }
+    
+}
+
+extension Array where Element: Klass {
+    
+    func contains(klass klass: String) -> Bool
+    {
+        for element in self {
+            if klass == element.name {
+                return true
+            }
+        }
+        return false
+    }
+    
+    subscript (index: String) -> Klass?
+    {
+        for element in self {
+            if element.name == index {
+                return element
+            }
+        }
+        return nil
+    }
+    
 }
