@@ -133,6 +133,17 @@ private extension ParserImplementationWriter {
         if let parent: String = klass.parent {
             if let parentKlass = availableKlasses[parent] {
                 return parentKlass.properties + self.getInheritedProperties(forKlass: parentKlass, availableKlasses: availableKlasses)
+            } else if parent.containsString(".") {
+                // do nothing; parent class belongs to some framework
+                print(
+                    CompilerMessage(
+                        filename: klass.declaration.filename,
+                        lineNumber: klass.declaration.lineNumber,
+                        message: "[ParserGenerator] Parent class is not available in generator's scope",
+                        type: .Note
+                    )
+                )
+                return []
             } else {
                 print(
                     CompilerMessage(
