@@ -160,21 +160,9 @@ private extension Application {
     
     func tryCompileSourceCode(code: String, filepath: String, debugMode: Bool) -> Klass?
     {
-        var sourceCodeLines: [SourceCodeLine] = []
-        
-        for (index, line) in code.lines().enumerate() {
-            sourceCodeLines.append(
-                SourceCodeLine(
-                    filename: filepath,
-                    lineNumber: index + 1,
-                    line: line
-                )
-            )
-        }
-        
         let sourceCodeFile: SourceCodeFile = SourceCodeFile(
             filename: filepath,
-            lines: sourceCodeLines
+            contents: code
         )
         
         return self.tryCompileSourceCode(sourceCodeFile, filename: filepath, debugMode: debugMode)
