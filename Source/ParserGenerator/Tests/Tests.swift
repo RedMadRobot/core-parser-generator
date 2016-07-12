@@ -92,7 +92,8 @@ class Tests: XCTestCase {
                         )
                     ]
                 )
-            ]
+            ],
+            body: []
         )
     }
     
@@ -130,7 +131,8 @@ class Tests: XCTestCase {
                     Annotation(name: "model", value: nil)
                 ],
                 declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 0, line: "class Phone"),
-                methods: []
+                methods: [],
+                body: []
             )
         ]
     }
