@@ -11,7 +11,7 @@ import Foundation
 
 class FileListFetcher {
     
-    internal func fileListInFolder(_ folder: String) -> [String]
+    internal func fileListInFolder(folder: String) -> [String]
     {
         let folderPath: String = absolutePath(folder)
         
@@ -25,9 +25,9 @@ class FileListFetcher {
         return filesAtFolder + filesInSubfolders
     }
     
-    fileprivate func absolutePath(_ path: String = "") -> String
+    private func absolutePath(path: String = "") -> String
     {
-        let currentDirectory: String = FileManager.default.currentDirectoryPath
+        let currentDirectory: String = NSFileManager.defaultManager().currentDirectoryPath
         
         print("WORKING DIRECTORY: " + currentDirectory)
         
@@ -42,22 +42,22 @@ class FileListFetcher {
         }
     }
     
-    fileprivate func filesAtFolder(_ folder: String) -> [String]
+    private func filesAtFolder(folder: String) -> [String]
     {
         return self.itemsAtFolder(folder, directories: false)
     }
     
-    fileprivate func foldersAtFolder(_ folder: String) -> [String]
+    private func foldersAtFolder(folder: String) -> [String]
     {
         return self.itemsAtFolder(folder, directories: true)
     }
     
-    fileprivate func itemsAtFolder(_ folderPath: String, directories: Bool) -> [String]
+    private func itemsAtFolder(folderPath: String, directories: Bool) -> [String]
     {
         let folderContents: [String]
-        let fileManager: FileManager = FileManager()
+        let fileManager: NSFileManager = NSFileManager()
         do {
-            folderContents = try fileManager.contentsOfDirectory(atPath: folderPath)
+            folderContents = try fileManager.contentsOfDirectoryAtPath(folderPath)
         } catch {
             return []
         }
@@ -66,7 +66,7 @@ class FileListFetcher {
             var isFolder: ObjCBool = ObjCBool(false)
             let fullPath: String   = folderPath + "/" + path
             
-            fileManager.fileExists(atPath: fullPath, isDirectory: &isFolder)
+            fileManager.fileExistsAtPath(fullPath, isDirectory: &isFolder)
             if directories == isFolder.boolValue {
                 return fullPath
             }

@@ -1,4 +1,4 @@
-//
+// 
 // ArrayPropertyWriter.swift
 // AppCode
 // 
@@ -44,7 +44,7 @@ class ArrayPropertyWriter: PropertyWriter {
                 filename: self.property.declaration.filename,
                 lineNumber: self.property.declaration.lineNumber,
                 message: "[ParserGenerator] Cannot find parser for object type \(self.property.type)"
-            ) 
+            )
         }
 
     }

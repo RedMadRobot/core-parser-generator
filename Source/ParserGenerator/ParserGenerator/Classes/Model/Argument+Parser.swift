@@ -11,7 +11,7 @@ import Foundation
 
 extension Array where Element: Argument {
     
-    func contains(argument: String) -> Bool
+    func contains(argument argument: String) -> Bool
     {
         for element in self {
             if element.name == argument {

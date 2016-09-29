@@ -36,7 +36,7 @@ class Application {
     
     init()
     {
-        self.arguments = CommandLine.arguments
+        self.arguments = Process.arguments
     }
     
     func run() -> Int32
@@ -101,9 +101,9 @@ private extension Application {
         print("Forces generator to print names of analyzed input files and generated parsers.")
     }
     
-    func valueForArgument(_ argument: String, defaultValue: String) -> String
+    func valueForArgument(argument: String, defaultValue: String) -> String
     {
-        guard let index: Int = arguments.index(of: argument)
+        guard let index: Int = arguments.indexOf(argument)
             else {
                 return defaultValue
         }
@@ -111,15 +111,15 @@ private extension Application {
         return arguments.count > index + 1 ? arguments[index + 1] : defaultValue
     }
     
-    func printArguments(_ arguments: [String])
+    func printArguments(arguments: [String])
     {
-        print("Arguments: " + arguments.reduce("", { (string: String, argument: String) -> String in
+        print("Arguments: " + arguments.reduce("", combine: { (string: String, argument: String) -> String in
             return string + argument + " "
         }))
     }
     
     func collectInputFilesAtDirectory(
-        _ directory: String,
+        directory: String,
         fileExtension: String,
         debugMode: Bool
         ) -> [String]
@@ -158,7 +158,7 @@ private extension Application {
         }
     }
     
-    func tryCompileSourceCode(_ code: String, filepath: String, debugMode: Bool) -> Klass?
+    func tryCompileSourceCode(code: String, filepath: String, debugMode: Bool) -> Klass?
     {
         let sourceCodeFile: SourceCodeFile = SourceCodeFile(
             filename: filepath,
@@ -168,7 +168,7 @@ private extension Application {
         return self.tryCompileSourceCode(sourceCodeFile, filename: filepath, debugMode: debugMode)
     }
     
-    func tryCompileSourceCode(_ code: SourceCodeFile, filename: String, debugMode: Bool) -> Klass?
+    func tryCompileSourceCode(code: SourceCodeFile, filename: String, debugMode: Bool) -> Klass?
     {
         var klass: Klass? = nil
         
@@ -206,7 +206,7 @@ private extension Application {
         return self.tryWriteImplementations(implementations, outputFolder: outputFolder, projectName: projectName, debugMode: debugMode)
     }
     
-    func tryWriteImplementations(_ implementations: [Implementation], outputFolder: String, projectName: String, debugMode: Bool) -> Int
+    func tryWriteImplementations(implementations: [Implementation], outputFolder: String, projectName: String, debugMode: Bool) -> Int
     {
         let path: String
         if !outputFolder.hasSuffix("/") {
@@ -215,9 +215,9 @@ private extension Application {
             path = outputFolder
         }
 
-        return implementations.reduce(0, { (written: Int, i: Implementation) -> Int in
+        return implementations.reduce(0, combine: { (written: Int, i: Implementation) -> Int in
             do {
-                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
                 let writer = CheckedFileWriter(atomic: false)
                 try writer.write(string: i.content, toFile: path + i.filename)
             } catch {

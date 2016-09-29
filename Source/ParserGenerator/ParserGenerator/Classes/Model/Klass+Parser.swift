@@ -25,7 +25,7 @@ extension Klass {
 
 extension Array where Element: Klass {
     
-    func contains(klass: String) -> Bool
+    func contains(klass klass: String) -> Bool
     {
         for element in self {
             if klass == element.name {
