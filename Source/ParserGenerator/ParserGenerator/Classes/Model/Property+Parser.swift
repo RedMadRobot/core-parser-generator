@@ -28,7 +28,7 @@ extension Property {
 
     func hasDefaultValue() -> Bool
     {
-        return self.declaration.line.truncateFromWord("//").containsString("=")
+        return self.declaration.line.truncateFromWord("//").contains("=")
     }
     
     func parser() -> String?
@@ -49,7 +49,7 @@ extension Property {
 
 extension Array where Element: Property {
     
-    func contains(property property: String) -> Bool
+    func contains(property: String) -> Bool
     {
         for element in self {
             if element.name == property {

@@ -1,4 +1,4 @@
-// 
+//
 // ObjectPropertyWriter.swift
 // AppCode
 // 

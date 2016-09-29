@@ -22,7 +22,7 @@ class ParserImplementationWriter {
      Сгенерировать реализацию (.swift).
      */
     internal func writeImplementation(
-        klass: Klass,
+        _ klass: Klass,
         klasses: [Klass],
         projectName: String
     ) throws -> String
@@ -95,13 +95,13 @@ class ParserImplementationWriter {
         
         let allGuard: String = headImportsParseObject
             .append(guardStatements.count > 0 ? tab + tab + "guard\n" : "")
-            .append(guardStatements.joinWithSeparator(",\n"))
+            .append(guardStatements.joined(separator: ",\n"))
             .append(guardStatements.count > 0 ? "\n" : "")
             .append(guardStatements.count > 0 ? tab + tab + "else { return nil }\n" : "")
             .append(guardStatements.count > 0 ? "\n" : "")
 
         let allOptional: String = allGuard
-            .append(optionalStatements.joinWithSeparator("\n"))
+            .append(optionalStatements.joined(separator: "\n"))
             .append(optionalStatements.count > 0 ? "\n" : "")
             .append(optionalStatements.count > 0 ? "\n" : "")
 
@@ -114,7 +114,7 @@ class ParserImplementationWriter {
             .append(constructorArgumentsLine)
             .append(constructorArgumentsLine.isEmpty ? ")" : "\n" + tab + tab + ")")
             .append(fillObjectStatements.count > 0 ? "\n" : "")
-            .append(fillObjectStatements.joinWithSeparator("\n"))
+            .append(fillObjectStatements.joined(separator: "\n"))
             .append(fillObjectStatements.count > 0 ? "\n" : "")
             .addBlankLine()
             .addLine(tab + tab + "return object")
@@ -133,7 +133,7 @@ private extension ParserImplementationWriter {
         if let parent: String = klass.parent {
             if let parentKlass = availableKlasses[parent] {
                 return parentKlass.properties + self.getInheritedProperties(forKlass: parentKlass, availableKlasses: availableKlasses)
-            } else if parent.containsString(".") {
+            } else if parent.contains(".") {
                 // do nothing; parent class belongs to some framework
                 print(
                     CompilerMessage(
@@ -184,7 +184,7 @@ private extension ParserImplementationWriter {
             
             for argument in constructor.arguments {
                 if !properties.contains(property: argument.name) {
-                    if argument.mandatory && !argument.declaration.line.truncateFromWord("//").containsString("=") {
+                    if argument.mandatory && !argument.declaration.line.truncateFromWord("//").contains("=") {
                         initsAllProperties = false
                     }
                 }
@@ -216,7 +216,7 @@ private extension ParserImplementationWriter {
                 return prefix + "\(argument.name): \(argument.name)"
             } else if !argument.mandatory {
                 return prefix + "\(argument.name): nil"
-            } else if argument.declaration.line.truncateFromWord("//").containsString("=") {
+            } else if argument.declaration.line.truncateFromWord("//").contains("=") {
                 return initial
             } else {
                 throw CompilerMessage(

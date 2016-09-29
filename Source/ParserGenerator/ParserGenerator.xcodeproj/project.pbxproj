@@ -440,6 +440,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 42LRQS6X44;
 						DevelopmentTeamName = "Redmadrobot OOO";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					8A2F88B81D102587002232AA = {
@@ -671,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -678,6 +680,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
