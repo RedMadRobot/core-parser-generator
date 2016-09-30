@@ -27,11 +27,11 @@ class ArrayPropertyWriter: PropertyWriter {
     {
         if let parser: String = self.property.parser() {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(data[\"\(self.property.jsonKey()!)\"]?.raw()) : nil"
             ]
         } else if self.checkIfParserAvailableInScope(forKlass: self.itemType.description) {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(data[\"\(self.property.jsonKey()!)\"]?.raw()) : nil"
             ]
         } else if self.itemType.isPrimitive() {
             return [
