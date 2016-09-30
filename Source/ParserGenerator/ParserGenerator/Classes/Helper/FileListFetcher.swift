@@ -13,13 +13,13 @@ class FileListFetcher {
     
     internal func fileListInFolder(folder: String) -> [String]
     {
-        let folderPath: String = absolutePath(folder)
+        let folderPath: String = absolutePath(path: folder)
         
-        let filesAtFolder:   [String] = self.filesAtFolder(folderPath)
-        let foldersAtFolder: [String] = self.foldersAtFolder(folderPath)
+        let filesAtFolder:   [String] = self.filesAtFolder(folder: folderPath)
+        let foldersAtFolder: [String] = self.foldersAtFolder(folder: folderPath)
         
         let filesInSubfolders: [String] = foldersAtFolder.reduce([]) { (items: [String], folder: String) -> [String] in
-            return items + fileListInFolder(folder)
+            return items + fileListInFolder(folder: folder)
         }
         
         return filesAtFolder + filesInSubfolders
@@ -27,7 +27,7 @@ class FileListFetcher {
     
     private func absolutePath(path: String = "") -> String
     {
-        let currentDirectory: String = NSFileManager.defaultManager().currentDirectoryPath
+        let currentDirectory: String = FileManager.default.currentDirectoryPath
         
         print("WORKING DIRECTORY: " + currentDirectory)
         
@@ -44,20 +44,20 @@ class FileListFetcher {
     
     private func filesAtFolder(folder: String) -> [String]
     {
-        return self.itemsAtFolder(folder, directories: false)
+        return self.itemsAtFolder(folderPath: folder, directories: false)
     }
     
     private func foldersAtFolder(folder: String) -> [String]
     {
-        return self.itemsAtFolder(folder, directories: true)
+        return self.itemsAtFolder(folderPath: folder, directories: true)
     }
     
     private func itemsAtFolder(folderPath: String, directories: Bool) -> [String]
     {
         let folderContents: [String]
-        let fileManager: NSFileManager = NSFileManager()
+        let fileManager: FileManager = FileManager()
         do {
-            folderContents = try fileManager.contentsOfDirectoryAtPath(folderPath)
+            folderContents = try fileManager.contentsOfDirectory(atPath: folderPath)
         } catch {
             return []
         }
@@ -66,7 +66,7 @@ class FileListFetcher {
             var isFolder: ObjCBool = ObjCBool(false)
             let fullPath: String   = folderPath + "/" + path
             
-            fileManager.fileExistsAtPath(fullPath, isDirectory: &isFolder)
+            fileManager.fileExists(atPath: fullPath, isDirectory: &isFolder)
             if directories == isFolder.boolValue {
                 return fullPath
             }

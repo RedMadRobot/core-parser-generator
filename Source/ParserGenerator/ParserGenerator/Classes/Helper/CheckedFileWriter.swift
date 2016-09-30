@@ -22,23 +22,23 @@ class CheckedFileWriter {
         self.atomic = atomic
     }
 
-    func write(string string: String, toFile filePath: String) throws
+    func write(string: String, toFile filePath: String) throws
     {
-        let currentString = try? String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
-        if let currentString = currentString where currentString == string {
+        let currentString = try? String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+        if let currentString = currentString , currentString == string {
             return
         }
 
-        try string.writeToFile(filePath, atomically: atomic, encoding: NSUTF8StringEncoding)
+        try string.write(toFile: filePath, atomically: atomic, encoding: String.Encoding.utf8)
     }
 
-    func write(data data: NSData, toFile filePath: String) throws
+    func write(data: NSData, toFile filePath: String) throws
     {
         let currentData = NSData(contentsOfFile: filePath)
-        if let currentData = currentData where currentData == data {
+        if let currentData = currentData , currentData == data {
             return
         }
 
-        try data.writeToFile(filePath, options: atomic ? [ .AtomicWrite ] : [])
+        try data.write(toFile: filePath, options: atomic ? [ .atomicWrite ] : [])
     }
 }

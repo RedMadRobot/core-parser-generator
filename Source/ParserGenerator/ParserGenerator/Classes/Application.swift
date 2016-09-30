@@ -36,7 +36,7 @@ class Application {
     
     init()
     {
-        self.arguments = Process.arguments
+        self.arguments = CommandLine.arguments
     }
     
     func run() -> Int32
@@ -46,17 +46,17 @@ class Application {
             return 0
         }
         
-        let projectName:      String = self.valueForArgument("-project_name", defaultValue: "GEN")
-        let inputFilesFolder: String = self.valueForArgument("-input", defaultValue: ".")
-        let outputFolder:     String = self.valueForArgument("-output", defaultValue: ".")
+        let projectName:      String = self.valueForArgument(argument: "-project_name", defaultValue: "GEN")
+        let inputFilesFolder: String = self.valueForArgument(argument: "-input", defaultValue: ".")
+        let outputFolder:     String = self.valueForArgument(argument: "-output", defaultValue: ".")
         let debugMode:        Bool   = arguments.contains("-debug")
         
         if debugMode {
-            self.printArguments(self.arguments)
+            self.printArguments(arguments: self.arguments)
         }
         
         let inputFilePaths: [String] = self.collectInputFilesAtDirectory(
-            inputFilesFolder,
+            directory: inputFilesFolder,
             fileExtension: ".swift",
             debugMode: debugMode
         )
@@ -103,7 +103,7 @@ private extension Application {
     
     func valueForArgument(argument: String, defaultValue: String) -> String
     {
-        guard let index: Int = arguments.indexOf(argument)
+        guard let index: Int = arguments.index(of: argument)
             else {
                 return defaultValue
         }
@@ -113,7 +113,7 @@ private extension Application {
     
     func printArguments(arguments: [String])
     {
-        print("Arguments: " + arguments.reduce("", combine: { (string: String, argument: String) -> String in
+        print("Arguments: " + arguments.reduce("", { (string: String, argument: String) -> String in
             return string + argument + " "
         }))
     }
@@ -124,7 +124,7 @@ private extension Application {
         debugMode: Bool
         ) -> [String]
     {
-        let filePaths: [String] = FileListFetcher().fileListInFolder(directory)
+        let filePaths: [String] = FileListFetcher().fileListInFolder(folder: directory)
         
         return filePaths.filter { (filePath: String) -> Bool in
             if debugMode {
@@ -158,7 +158,7 @@ private extension Application {
         }
     }
     
-    func tryCompileSourceCode(code: String, filepath: String, debugMode: Bool) -> Klass?
+    func tryCompileSourceCode(_ code: String, filepath: String, debugMode: Bool) -> Klass?
     {
         let sourceCodeFile: SourceCodeFile = SourceCodeFile(
             filename: filepath,
@@ -168,7 +168,7 @@ private extension Application {
         return self.tryCompileSourceCode(sourceCodeFile, filename: filepath, debugMode: debugMode)
     }
     
-    func tryCompileSourceCode(code: SourceCodeFile, filename: String, debugMode: Bool) -> Klass?
+    func tryCompileSourceCode(_ code: SourceCodeFile, filename: String, debugMode: Bool) -> Klass?
     {
         var klass: Klass? = nil
         
@@ -194,7 +194,7 @@ private extension Application {
             do {
                 return Implementation(
                     filename: k.name + "Parser.swift",
-                    content: try ParserImplementationWriter().writeImplementation(k, klasses: klasses, projectName: projectName)
+                    content: try ParserImplementationWriter().writeImplementation(klass: k, klasses: klasses, projectName: projectName)
                 )
             } catch let error {
                 print(error)
@@ -203,7 +203,7 @@ private extension Application {
             return nil
         }
         
-        return self.tryWriteImplementations(implementations, outputFolder: outputFolder, projectName: projectName, debugMode: debugMode)
+        return self.tryWriteImplementations(implementations: implementations, outputFolder: outputFolder, projectName: projectName, debugMode: debugMode)
     }
     
     func tryWriteImplementations(implementations: [Implementation], outputFolder: String, projectName: String, debugMode: Bool) -> Int
@@ -215,9 +215,9 @@ private extension Application {
             path = outputFolder
         }
 
-        return implementations.reduce(0, combine: { (written: Int, i: Implementation) -> Int in
+        return implementations.reduce(0, { (written: Int, i: Implementation) -> Int in
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 let writer = CheckedFileWriter(atomic: false)
                 try writer.write(string: i.content, toFile: path + i.filename)
             } catch {

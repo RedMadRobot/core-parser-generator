@@ -18,7 +18,7 @@ class Tests: XCTestCase {
 
         do {
             let writtenCode: String = try writer.writeImplementation(
-                self.mockKlass(),
+                klass: self.mockKlass(),
                 klasses: self.allClasses(),
                 projectName: "Test"
             )
