@@ -38,7 +38,7 @@ class ParserImplementationWriter {
             .addLine("//  \(projectName)")
             .addLine("//")
             .addLine("//  Created by Code Generator")
-            .addLine("//  Copyright (c) 2015 RedMadRobot LLC. All rights reserved.")
+            .addLine("//  Copyright (c) 2016 RedMadRobot LLC. All rights reserved.")
             .addLine("//")
             .addBlankLine()
         
@@ -51,13 +51,7 @@ class ParserImplementationWriter {
         let headImportsParseObject: String = headImports
             .addLine("class \(klass.name)Parser: JSONParser<\(klass.name)>")
             .addLine("{")
-            .addBlankLine()
-            .addLine("    override init(fulfiller: Fulfiller<\(klass.name)>?)")
-            .addLine("    {")
-            .addLine("        super.init(fulfiller: fulfiller)")
-            .addLine("    }")
-            .addBlankLine()
-            .addLine(tab + "override func parseObject(data: [String : JSON]) -> \(klass.name)?")
+            .addLine(tab + "override func parseObject(_ data: JSON) -> \(klass.name)?")
             .addLine(tab + "{")
 
         var guardStatements:      [String] = []

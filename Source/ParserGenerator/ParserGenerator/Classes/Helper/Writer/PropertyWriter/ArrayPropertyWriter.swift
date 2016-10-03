@@ -25,19 +25,17 @@ class ArrayPropertyWriter: PropertyWriter {
 
     override func parseStatements() throws -> [String]
     {
-        let valueSuffix: String = self.property.mandatory ? "Value" : ""
-    
         if let parser: String = self.property.parser() {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(parser)().parse(data[\"\(self.property.jsonKey()!)\"]?.raw()) : nil"
             ]
         } else if self.checkIfParserAvailableInScope(forKlass: self.itemType.description) {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(body: data[\"\(self.property.jsonKey()!)\"]!) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? \(self.itemType)Parser().parse(data[\"\(self.property.jsonKey()!)\"]?.raw()) : nil"
             ]
         } else if self.itemType.isPrimitive() {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? data[\"\(self.property.jsonKey()!)\"]!.array\(valueSuffix)\(optMark).map({ $0.\(self.itemType.getSwiftyJsonSuffix())Value }) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? data[\"\(self.property.jsonKey()!)\"]!.array\(optMark).map({ $0.\(self.itemType.getSwiftyJsonSuffix())Value }) : nil"
             ]
         } else {
             throw CompilerMessage(

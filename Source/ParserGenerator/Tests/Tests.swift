@@ -163,7 +163,7 @@ class Tests: XCTestCase {
             .addLine("    override func parseObject(data: [String : JSON]) -> Account?")
             .addLine("    {")
             .addLine("        guard")
-            .addLine("            let phoneList: [Phone] = (nil != data[\"phone_list\"]) ? PhoneParser().parse(body: data[\"phone_list\"]!) : nil")
+            .addLine("            let phoneList: [Phone] = (nil != data[\"phone_list\"]) ? PhoneParser().parse(data[\"phone_list\"]?.raw()) : nil")
             .addLine("        else { return nil }")
             .addBlankLine()
             .addLine("        let name: String? = data[\"my_name\"]?.string")
