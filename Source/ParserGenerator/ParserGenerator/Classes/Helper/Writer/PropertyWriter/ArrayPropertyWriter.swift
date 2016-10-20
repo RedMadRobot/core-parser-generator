@@ -35,7 +35,7 @@ class ArrayPropertyWriter: PropertyWriter {
             ]
         } else if self.itemType.isPrimitive() {
             return [
-                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? data[\"\(self.property.jsonKey()!)\"]!.array\(optMark).map({ $0.\(self.itemType.getSwiftyJsonSuffix())Value }) : nil"
+                optTab + tab + tab + "let \(self.property.name): \(self.property.type)\(optMark) = (nil != data[\"\(self.property.jsonKey()!)\"]) ? data[\"\(self.property.jsonKey()!)\"]!.array as? \(self.property.type) : nil"
             ]
         } else {
             throw CompilerMessage(
