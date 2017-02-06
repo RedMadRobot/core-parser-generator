@@ -38,7 +38,7 @@ class ParserImplementationWriter {
             .addLine("//  \(projectName)")
             .addLine("//")
             .addLine("//  Created by Code Generator")
-            .addLine("//  Copyright (c) 2016 RedMadRobot LLC. All rights reserved.")
+            .addLine("//  Copyright (c) 2017 RedMadRobot LLC. All rights reserved.")
             .addLine("//")
             .addBlankLine()
         
