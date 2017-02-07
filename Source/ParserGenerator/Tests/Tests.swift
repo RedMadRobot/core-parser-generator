@@ -156,6 +156,8 @@ class Tests: XCTestCase {
             .addLine("{")
             .addLine("    override func parseObject(_ data: JSON) -> Account?")
             .addLine("    {")
+            .addLine("        printAbsentFields(in: data)")
+            .addBlankLine()
             .addLine("        guard")
             .addLine("            let phoneList: [Phone] = (nil != data[\"phone_list\"]) ? PhoneParser().parse(data[\"phone_list\"]!.raw()) : nil")
             .addLine("        else { return nil }")
