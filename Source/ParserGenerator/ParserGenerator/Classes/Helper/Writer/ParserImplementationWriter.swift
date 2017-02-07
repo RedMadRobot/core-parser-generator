@@ -53,6 +53,8 @@ class ParserImplementationWriter {
             .addLine("{")
             .addLine(tab + "override func parseObject(_ data: JSON) -> \(klass.name)?")
             .addLine(tab + "{")
+            .addLine(tab + tab + "printAbsentFields(in: data)")
+            .addBlankLine()
 
         var guardStatements:      [String] = []
         var optionalStatements:   [String] = []
@@ -114,9 +116,38 @@ class ParserImplementationWriter {
             .addLine(tab + tab + "return object")
             .addLine(tab + "}")
             .addBlankLine()
+        
+        let mandatoryFieldList: String = properties
+            .filter { (p: Property) -> Bool in
+                return p.mandatory
+            }
+            .reduce("") { (line: String, p: Property) -> String in
+                return "\"" + p.jsonKey()! + "\", " + line
+            }
+        
+        let optionalFieldList: String = properties
+            .filter { (p: Property) -> Bool in
+                return !p.mandatory
+            }
+            .reduce("") { (line: String, p: Property) -> String in
+                return "\"" + p.jsonKey()! + "\", " + line
+            }
+        
+        let modelFields: String = fillObject
+            .addLine(tab + "override class func modelFields() -> Fields")
+            .addLine(tab + "{")
+            .addLine(tab + tab + "return Fields(")
+            .addLine(tab + tab + tab + "mandatory: Set([")
+            .addLine(tab + tab + tab + tab + mandatoryFieldList)
+            .addLine(tab + tab + tab + "]),")
+            .addLine(tab + tab + tab + "optional: Set([")
+            .addLine(tab + tab + tab + tab + optionalFieldList)
+            .addLine(tab + tab + tab + "])")
+            .addLine(tab + tab + ")")
+            .addLine(tab + "}")
             .addLine("}")
         
-        return fillObject
+        return modelFields
     }
 }
 
