@@ -161,7 +161,7 @@ private extension Application {
     func tryCompileSourceCode(_ code: String, filepath: String, debugMode: Bool) -> Klass?
     {
         let sourceCodeFile: SourceCodeFile = SourceCodeFile(
-            filename: filepath,
+            absoluteFilePath: filepath,
             contents: code
         )
         

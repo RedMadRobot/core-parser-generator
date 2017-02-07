@@ -62,7 +62,7 @@ class ParserImplementationWriter {
             if property.constant {
                 if property.hasDefaultValue() {
                     throw CompilerMessage(
-                        filename: property.declaration.filename,
+                        absoluteFilePath: property.declaration.absoluteFilePath,
                         lineNumber: property.declaration.lineNumber,
                         message: "[ParserGenerator] Initialized constant property cannot be filled from JSON"
                     )
@@ -131,7 +131,7 @@ private extension ParserImplementationWriter {
                 // do nothing; parent class belongs to some framework
                 print(
                     CompilerMessage(
-                        filename: klass.declaration.filename,
+                        absoluteFilePath: klass.declaration.absoluteFilePath,
                         lineNumber: klass.declaration.lineNumber,
                         message: "[ParserGenerator] Parent class is not available in generator's scope",
                         type: .Note
@@ -141,7 +141,7 @@ private extension ParserImplementationWriter {
             } else {
                 print(
                     CompilerMessage(
-                        filename: klass.declaration.filename,
+                        absoluteFilePath: klass.declaration.absoluteFilePath,
                         lineNumber: klass.declaration.lineNumber,
                         message: "[ParserGenerator] Parent class is not available in generator's scope",
                         type: .Warning
@@ -190,7 +190,7 @@ private extension ParserImplementationWriter {
         }
         
         throw CompilerMessage(
-            filename: klass.declaration.filename,
+            absoluteFilePath: klass.declaration.absoluteFilePath,
             lineNumber: klass.declaration.lineNumber,
             message: "[ParserGenerator] Parser could not pick an initializer method: "
                    + "don't know how to associate init arguments with class properties"
@@ -214,7 +214,7 @@ private extension ParserImplementationWriter {
                 return initial
             } else {
                 throw CompilerMessage(
-                    filename: argument.declaration.filename,
+                    absoluteFilePath: argument.declaration.absoluteFilePath,
                     lineNumber: argument.declaration.lineNumber,
                     message: "[ParserGenerator] Parser could not use an initializer method: "
                            + "don't know how to fill \(argument.name) argument"

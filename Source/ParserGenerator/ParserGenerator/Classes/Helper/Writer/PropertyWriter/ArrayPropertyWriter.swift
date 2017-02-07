@@ -10,13 +10,13 @@ import Foundation
 
 class ArrayPropertyWriter: PropertyWriter {
 
-    let itemType: PropertyType
+    let itemType: Typê
 
     internal init(
         property: Property,
         currentKlass: Klass,
         availableKlasses: [Klass],
-        itemType: PropertyType
+        itemType: Typê
     )
     {
         self.itemType = itemType
@@ -39,7 +39,7 @@ class ArrayPropertyWriter: PropertyWriter {
             ]
         } else {
             throw CompilerMessage(
-                filename: self.property.declaration.filename,
+                absoluteFilePath: self.property.declaration.absoluteFilePath,
                 lineNumber: self.property.declaration.lineNumber,
                 message: "[ParserGenerator] Cannot find parser for object type \(self.property.type)"
             )

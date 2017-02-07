@@ -37,30 +37,30 @@ class Tests: XCTestCase {
             properties: [
                 Property(
                     name: "name",
-                    type: PropertyType.StringType,
+                    type: Typê.StringType,
                     annotations: [
                         Annotation(name: "mandatory", value: nil),
                         Annotation(name: "json", value: "my_name")
                     ],
                     constant: false,
                     mandatory: false,
-                    declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 15, line: "   var name: String?")
+                    declaration: SourceCodeLine(absoluteFilePath: "Account.swift", lineNumber: 15, line: "   var name: String?")
                 ),
                 Property(
                     name: "phoneList",
-                    type: PropertyType.ArrayType(item: PropertyType.ObjectType(name: "Phone")),
+                    type: Typê.ArrayType(item: Typê.ObjectType(name: "Phone")),
                     annotations: [
                         Annotation(name: "json", value: "phone_list")
                     ],
                     constant: false,
                     mandatory: true,
-                    declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 25, line: "   var phoneList: [Phone]")
+                    declaration: SourceCodeLine(absoluteFilePath: "Account.swift", lineNumber: 25, line: "   var phoneList: [Phone]")
                 )
             ],
             annotations: [
                 Annotation(name: "model", value: nil)
             ],
-            declaration: SourceCodeLine(filename: "Account.swift", lineNumber: 0, line: "class Account: Entity"),
+            declaration: SourceCodeLine(absoluteFilePath: "Account.swift", lineNumber: 0, line: "class Account: Entity"),
             methods: [
                 Method(
                     name: "init",
@@ -68,11 +68,11 @@ class Tests: XCTestCase {
                         Argument(
                             name: "phoneList",
                             bodyName: "phoneList",
-                            type: PropertyType.ArrayType(item: PropertyType.ObjectType(name: "Phone")),
+                            type: Typê.ArrayType(item: Typê.ObjectType(name: "Phone")),
                             mandatory: true,
                             annotations: [],
                             declaration: SourceCodeLine(
-                                filename: "Account.swift",
+                                absoluteFilePath: "Account.swift",
                                 lineNumber: 0,
                                 line: "phoneList: [Phone]"
                             )
@@ -81,12 +81,12 @@ class Tests: XCTestCase {
                     annotations: [],
                     returnType: .ObjectType(name: "Self"),
                     declaration: SourceCodeLine(
-                        filename: "Account.swift",
+                        absoluteFilePath: "Account.swift",
                         lineNumber: 0,
                         line: "init("),
                     body: [
                         SourceCodeLine(
-                            filename: "Account.swift",
+                            absoluteFilePath: "Account.swift",
                             lineNumber: 0,
                             line: "self.phoneList = phoneList"
                         )
@@ -107,30 +107,30 @@ class Tests: XCTestCase {
                 properties: [
                     Property(
                         name: "numeric",
-                        type: PropertyType.IntType,
+                        type: Typê.IntType,
                         annotations: [
                             Annotation(name: "json", value: "numeric_value"),
                             Annotation(name: "mandatory", value: nil)
                         ],
                         constant: false,
                         mandatory: true,
-                        declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 15, line: "    var numeric: Int")
+                        declaration: SourceCodeLine(absoluteFilePath: "Phone.swift", lineNumber: 15, line: "    var numeric: Int")
                     ),
                     Property(
                         name: "humanReadable",
-                        type: PropertyType.StringType,
+                        type: Typê.StringType,
                         annotations: [
                             Annotation(name: "json", value: "human_readable")
                         ],
                         constant: false,
                         mandatory: true,
-                        declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 25, line: "    var humanReadable: String")
+                        declaration: SourceCodeLine(absoluteFilePath: "Phone.swift", lineNumber: 25, line: "    var humanReadable: String")
                     )
                 ],
                 annotations: [
                     Annotation(name: "model", value: nil)
                 ],
-                declaration: SourceCodeLine(filename: "Phone.swift", lineNumber: 0, line: "class Phone"),
+                declaration: SourceCodeLine(absoluteFilePath: "Phone.swift", lineNumber: 0, line: "class Phone"),
                 methods: [],
                 body: []
             )

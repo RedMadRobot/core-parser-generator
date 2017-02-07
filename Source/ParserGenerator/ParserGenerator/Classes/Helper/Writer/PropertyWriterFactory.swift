@@ -53,6 +53,13 @@ class PropertyWriterFactory {
                     currentKlass: currentKlass,
                     availableKlasses: availableKlasses
                 )
+            
+            case .GenericType:
+                return PropertyWriter(
+                    property: property,
+                    currentKlass: currentKlass,
+                    availableKlasses: availableKlasses
+                )
         }
     }
 

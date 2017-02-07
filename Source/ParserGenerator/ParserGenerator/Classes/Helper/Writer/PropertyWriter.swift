@@ -26,7 +26,7 @@ class PropertyWriter {
         self.optMark            = property.mandatory ? "" : "?"
     }
     
-    internal func parseStatements() throws  -> [String]
+    internal func parseStatements() throws -> [String]
     {
         return []
     }
