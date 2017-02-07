@@ -172,6 +172,17 @@ class Tests: XCTestCase {
             .addLine("        return object")
             .addLine("    }")
             .addBlankLine()
+            .addLine(tab + "override class func modelFields() -> Fields")
+            .addLine(tab + "{")
+            .addLine(tab + tab + "return Fields(")
+            .addLine(tab + tab + tab + "mandatory: Set([")
+            .addLine(tab + tab + tab + tab + "\"phone_list\", ")
+            .addLine(tab + tab + tab + "]),")
+            .addLine(tab + tab + tab + "optional: Set([")
+            .addLine(tab + tab + tab + tab + "\"my_name\", ")
+            .addLine(tab + tab + tab + "]),")
+            .addLine(tab + tab + ")")
+            .addLine(tab + "}")
             .addLine("}")
     }
     
