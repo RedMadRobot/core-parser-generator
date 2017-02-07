@@ -180,7 +180,7 @@ class Tests: XCTestCase {
             .addLine(tab + tab + tab + "]),")
             .addLine(tab + tab + tab + "optional: Set([")
             .addLine(tab + tab + tab + tab + "\"my_name\", ")
-            .addLine(tab + tab + tab + "]),")
+            .addLine(tab + tab + tab + "])")
             .addLine(tab + tab + ")")
             .addLine(tab + "}")
             .addLine("}")

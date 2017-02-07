@@ -142,7 +142,7 @@ class ParserImplementationWriter {
             .addLine(tab + tab + tab + "]),")
             .addLine(tab + tab + tab + "optional: Set([")
             .addLine(tab + tab + tab + tab + optionalFieldList)
-            .addLine(tab + tab + tab + "]),")
+            .addLine(tab + tab + tab + "])")
             .addLine(tab + tab + ")")
             .addLine(tab + "}")
             .addLine("}")
