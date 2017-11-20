@@ -79,23 +79,6 @@
 		8ADE99941D0FA57C00550123 /* ParserImplementationWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE998F1D0FA57C00550123 /* ParserImplementationWriter.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8A76FA501D0FB8AA00D5EE11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8AF267B01CABDA9300BB9507;
-			remoteInfo = ModelCompiler;
-		};
-		8A76FA521D0FB8AA00D5EE11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8ABCC0DE1CABE34C003CCDBA;
-			remoteInfo = ModelCompilerTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		8A1002141D0FA1C700DA4864 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -125,15 +108,6 @@
 		8A581D5F1D2AA4D800FEE318 /* PropertyWriterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWriterFactory.swift; sourceTree = "<group>"; };
 		8A76F9C11D0FAC6E00D5EE11 /* FileListFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListFetcher.swift; sourceTree = "<group>"; };
 		8A76F9FD1D0FB3CE00D5EE11 /* Property+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Property+Parser.swift"; sourceTree = "<group>"; };
-		8A76FA051D0FB8AA00D5EE11 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		8A76FA061D0FB8AA00D5EE11 /* ModelCompiler.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelCompiler.podspec; sourceTree = "<group>"; };
-		8A76FA071D0FB8AA00D5EE11 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8A76FA291D0FB8AA00D5EE11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A76FA2A1D0FB8AA00D5EE11 /* ModelCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCompiler.h; sourceTree = "<group>"; };
-		8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ModelCompiler.xcodeproj; sourceTree = "<group>"; };
-		8A76FA301D0FB8AA00D5EE11 /* CompilerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompilerTests.swift; sourceTree = "<group>"; };
-		8A76FA321D0FB8AA00D5EE11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A76FA331D0FB8AA00D5EE11 /* ModelCompilerTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModelCompilerTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A8EFA9D1D0FA31D000281CF /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		8ABDF00F1D354A2F00965D4A /* Compiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		8ABDF0111D354A2F00965D4A /* AnnotationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationParser.swift; sourceTree = "<group>"; };
@@ -239,83 +213,17 @@
 		8A76FA041D0FB8AA00D5EE11 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8A76FA051D0FB8AA00D5EE11 /* .gitignore */,
-				8A76FA061D0FB8AA00D5EE11 /* ModelCompiler.podspec */,
-				8A76FA071D0FB8AA00D5EE11 /* README.md */,
-				8A76FA081D0FB8AA00D5EE11 /* Source */,
+				8A76FA0A1D0FB8AA00D5EE11 /* ModelCompiler */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		8A76FA081D0FB8AA00D5EE11 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA091D0FB8AA00D5EE11 /* ModelCompiler */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		8A76FA091D0FB8AA00D5EE11 /* ModelCompiler */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA0A1D0FB8AA00D5EE11 /* ModelCompiler */,
-				8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */,
-				8A76FA2E1D0FB8AA00D5EE11 /* ModelCompilerTests */,
-			);
-			path = ModelCompiler;
 			sourceTree = "<group>";
 		};
 		8A76FA0A1D0FB8AA00D5EE11 /* ModelCompiler */ = {
 			isa = PBXGroup;
 			children = (
 				8ABDF00E1D354A2F00965D4A /* Classes */,
-				8A76FA281D0FB8AA00D5EE11 /* SupportingFiles */,
 			);
 			path = ModelCompiler;
-			sourceTree = "<group>";
-		};
-		8A76FA281D0FB8AA00D5EE11 /* SupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA291D0FB8AA00D5EE11 /* Info.plist */,
-				8A76FA2A1D0FB8AA00D5EE11 /* ModelCompiler.h */,
-			);
-			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		8A76FA2C1D0FB8AA00D5EE11 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA511D0FB8AA00D5EE11 /* ModelCompiler.framework */,
-				8A76FA531D0FB8AA00D5EE11 /* ModelCompilerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8A76FA2E1D0FB8AA00D5EE11 /* ModelCompilerTests */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA2F1D0FB8AA00D5EE11 /* Classes */,
-				8A76FA311D0FB8AA00D5EE11 /* SupportingFiles */,
-			);
-			path = ModelCompilerTests;
-			sourceTree = "<group>";
-		};
-		8A76FA2F1D0FB8AA00D5EE11 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA301D0FB8AA00D5EE11 /* CompilerTests.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		8A76FA311D0FB8AA00D5EE11 /* SupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA321D0FB8AA00D5EE11 /* Info.plist */,
-				8A76FA331D0FB8AA00D5EE11 /* ModelCompilerTests-Bridging-Header.h */,
-			);
-			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		8A8EFA9C1D0FA317000281CF /* Classes */ = {
@@ -436,7 +344,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "RedMadRobot LLC.";
 				TargetAttributes = {
 					8A1002151D0FA1C700DA4864 = {
@@ -462,12 +370,6 @@
 			mainGroup = 8A10020D1D0FA1C700DA4864;
 			productRefGroup = 8A1002171D0FA1C700DA4864 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8A76FA2C1D0FB8AA00D5EE11 /* Products */;
-					ProjectRef = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8A1002151D0FA1C700DA4864 /* ParserGenerator */,
@@ -475,23 +377,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8A76FA511D0FB8AA00D5EE11 /* ModelCompiler.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ModelCompiler.framework;
-			remoteRef = 8A76FA501D0FB8AA00D5EE11 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8A76FA531D0FB8AA00D5EE11 /* ModelCompilerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ModelCompilerTests.xctest;
-			remoteRef = 8A76FA521D0FB8AA00D5EE11 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8A2F88B71D102587002232AA /* Resources */ = {
@@ -600,7 +485,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -608,7 +495,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -648,7 +539,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -656,7 +549,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
