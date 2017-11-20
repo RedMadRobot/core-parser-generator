@@ -79,23 +79,6 @@
 		8ADE99941D0FA57C00550123 /* ParserImplementationWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE998F1D0FA57C00550123 /* ParserImplementationWriter.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8A76FA501D0FB8AA00D5EE11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8AF267B01CABDA9300BB9507;
-			remoteInfo = ModelCompiler;
-		};
-		8A76FA521D0FB8AA00D5EE11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8ABCC0DE1CABE34C003CCDBA;
-			remoteInfo = ModelCompilerTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		8A1002141D0FA1C700DA4864 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -130,10 +113,6 @@
 		8A76FA071D0FB8AA00D5EE11 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8A76FA291D0FB8AA00D5EE11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A76FA2A1D0FB8AA00D5EE11 /* ModelCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCompiler.h; sourceTree = "<group>"; };
-		8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ModelCompiler.xcodeproj; sourceTree = "<group>"; };
-		8A76FA301D0FB8AA00D5EE11 /* CompilerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompilerTests.swift; sourceTree = "<group>"; };
-		8A76FA321D0FB8AA00D5EE11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A76FA331D0FB8AA00D5EE11 /* ModelCompilerTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModelCompilerTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A8EFA9D1D0FA31D000281CF /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		8ABDF00F1D354A2F00965D4A /* Compiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
 		8ABDF0111D354A2F00965D4A /* AnnotationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationParser.swift; sourceTree = "<group>"; };
@@ -259,8 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				8A76FA0A1D0FB8AA00D5EE11 /* ModelCompiler */,
-				8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */,
-				8A76FA2E1D0FB8AA00D5EE11 /* ModelCompilerTests */,
 			);
 			path = ModelCompiler;
 			sourceTree = "<group>";
@@ -279,41 +256,6 @@
 			children = (
 				8A76FA291D0FB8AA00D5EE11 /* Info.plist */,
 				8A76FA2A1D0FB8AA00D5EE11 /* ModelCompiler.h */,
-			);
-			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		8A76FA2C1D0FB8AA00D5EE11 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA511D0FB8AA00D5EE11 /* ModelCompiler.framework */,
-				8A76FA531D0FB8AA00D5EE11 /* ModelCompilerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8A76FA2E1D0FB8AA00D5EE11 /* ModelCompilerTests */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA2F1D0FB8AA00D5EE11 /* Classes */,
-				8A76FA311D0FB8AA00D5EE11 /* SupportingFiles */,
-			);
-			path = ModelCompilerTests;
-			sourceTree = "<group>";
-		};
-		8A76FA2F1D0FB8AA00D5EE11 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA301D0FB8AA00D5EE11 /* CompilerTests.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		8A76FA311D0FB8AA00D5EE11 /* SupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				8A76FA321D0FB8AA00D5EE11 /* Info.plist */,
-				8A76FA331D0FB8AA00D5EE11 /* ModelCompilerTests-Bridging-Header.h */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -462,12 +404,6 @@
 			mainGroup = 8A10020D1D0FA1C700DA4864;
 			productRefGroup = 8A1002171D0FA1C700DA4864 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8A76FA2C1D0FB8AA00D5EE11 /* Products */;
-					ProjectRef = 8A76FA2B1D0FB8AA00D5EE11 /* ModelCompiler.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8A1002151D0FA1C700DA4864 /* ParserGenerator */,
@@ -475,23 +411,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8A76FA511D0FB8AA00D5EE11 /* ModelCompiler.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ModelCompiler.framework;
-			remoteRef = 8A76FA501D0FB8AA00D5EE11 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8A76FA531D0FB8AA00D5EE11 /* ModelCompilerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ModelCompilerTests.xctest;
-			remoteRef = 8A76FA521D0FB8AA00D5EE11 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8A2F88B71D102587002232AA /* Resources */ = {
