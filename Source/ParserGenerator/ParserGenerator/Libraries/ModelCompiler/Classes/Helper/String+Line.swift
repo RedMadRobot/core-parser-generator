@@ -8,13 +8,13 @@
 
 import Foundation
 
-// MARK: - Добавление строк
+// MARK: - String helpers
 public extension String {
     
     /**
-     Добавляет пустую строку.
+     Add empty line
      
-     - returns: Добавляет пустую строку.
+     - returns: New string with empty line
      */
     public func addBlankLine() -> String
     {
@@ -22,11 +22,11 @@ public extension String {
     }
     
     /**
-     Добавляет строку **line** (с переносом каретки).
+     Add line **line** (with new line symbol).
      
-     - parameter line: строка, которую нужно добавить.
+     - parameter line: line, that need to add.
      
-     - returns: Добавляет строку **line** (с переносом каретки).
+     - returns: New string with added **line** (with new line symbol).
      */
     public func addLine(_ line: String) -> String
     {
@@ -36,11 +36,11 @@ public extension String {
     }
     
     /**
-     Добавляет текст **line** (без переноса каретки).
+     Add text **line** (without new line symbol).
      
-     - parameter line: текст, который нужно добавить
+     - parameter line: text to add
      
-     - returns: Добавляет текст **line** (без переноса каретки).
+     - returns: New text **line** (without new line symbol).
      */
     public func append(_ line: String) -> String
     {

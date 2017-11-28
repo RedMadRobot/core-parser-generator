@@ -12,14 +12,13 @@ import Foundation
 public extension String {
     
     /**
-     Удаляет символы вплоть до слова **word**.
-     По умолчанию слово **word** остаётся в строке.
+     Remove symbols to **word**.
+     **word** remains in the line by default.
      
-     - parameter word: слово, до которого нужно удалить символы;
-     - parameter includeWord: нужно ли удалять само слово **word**?
+     - parameter word: remove symbols before this word ;
+     - parameter includeWord: remove or not the **word**?
      
-     - returns: Возвращает строку, обрезанную вплоть до слова **word**. Если слова в
-     строке нет -- возвращается сама строка.
+     - returns: New string, truncated before **word**. If there is no word return input **word**
      */
     public func truncateToWord(_ word: String, deleteWord: Bool = false) -> String
     {
@@ -32,14 +31,13 @@ public extension String {
     }
     
     /**
-     Удалить символы после слова **word**.
-     По умолчанию символы удаляются вместе со словом **word**.
+     Remove symbols after **word**.
+     All symbols will be removed after and with **word** by default.
      
-     - parameter word: слово, после которого нужно удалить символы;
-     - parameter includeWord: нужно ли удалять само слово **word**?
+     - parameter word: remove symbols after this word;
+     - parameter includeWord: remove or not the **word**?
      
-     - returns: Возвращает строку, обрезанную после слова **word**. Если слова в строке нет
-     -- возвращает саму строку.
+     - returns: New string, truncated after **word**. If there is no word return input **word**
      */
     public func truncateFromWord(_ word: String, deleteWord: Bool = true) -> String
     {
@@ -52,10 +50,10 @@ public extension String {
     }
     
     /**
-     Последнее слово из строки.
-     Последнее слово -- это всё, что идёт после последнего пробела или последнего переноса каретки.
+     Get last word from string.
+     Last word -- any after last space or new line symbol.
      
-     - returns: Возвращает последнее слово из строки.
+     - returns: last word from string.
      */
     public func lastWord() -> String
     {
@@ -71,10 +69,10 @@ public extension String {
     }
     
     /**
-     Первое слово из строки.
-     Первое слово -- это всё, что идёт до первого пробела или первого переноса каретки.
+     First word from string.
+     First word -- any before first space or new line symbol.
      
-     - returns: Возвращает первое слово из строки.
+     - returns: first word from string.
      */
     public func firstWord() -> String
     {
@@ -112,9 +110,9 @@ public extension String {
     }
     
     /**
-     Обрезать пробелы и переносы в начале строки.
+     Truncate all spaces and new line symbols at the beginning of line.
      
-     - returns: Возвращает строку без пробелов и переносов в начале.
+     - returns: new string without spaces and symbols at the beginning.
      */
     public func truncateLeadingWhitespace() -> String
     {

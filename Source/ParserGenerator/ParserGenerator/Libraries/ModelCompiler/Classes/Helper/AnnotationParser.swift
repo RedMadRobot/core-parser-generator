@@ -12,7 +12,6 @@ open class AnnotationParser {
     
     public init()
     {
-        // ничего не делать
     }
     
     open func parse(comment string: String) -> [Annotation]

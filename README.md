@@ -117,3 +117,11 @@ You need to insert correct path to parser generator executable file, project nam
 ## Restrictions
 
 * Only support classes
+
+## Author
+Egor Taflanidi, et@redmadrobot.com
+
+## Support team
+Ivan Vavilov, iv@redmadrobot.com
+
+Andrey Rozhkov, ar@redmadrobot.com
