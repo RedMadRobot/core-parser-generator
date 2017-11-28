@@ -10,9 +10,10 @@ import Foundation
 
 
 /**
- Писатель файлов с проверкой на идентичность контента.
+ File writer with content changes checking.
 
- Запись производится в случае если текущий контент файла не совпадает с новым.
+ Write only if current file content is changed.
+ 
 */
 class CheckedFileWriter {
     var atomic: Bool

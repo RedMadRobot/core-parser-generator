@@ -12,14 +12,14 @@ import Foundation
 let tab = "    "
 
 /**
- Генератор реализации парсера.
+ Generator for parser implemetation.
  */
 class ParserImplementationWriter {
 
-    // MARK: - Публичные методы
+    // MARK: - Public methods
     
     /**
-     Сгенерировать реализацию (.swift).
+     Generate implementation (.swift).
      */
     internal func writeImplementation(
         klass: Klass,

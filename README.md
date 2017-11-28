@@ -1,60 +1,119 @@
 # ParserGenerator
 
-Генератор парсеров.
+This utility generates parsers from model objects. Only works for [Core Parser](https://github.com/RedMadRobot/core-parser).
 
-## Установка
+## Example
 
-В проект необходимо добавить git submodule:
+You have entity class
 
-`git@git.redmadrobot.com:foundation-ios/ParserGenerator.git`
+```swift
+/** 
+ @model
+ */
+class Client {
 
-Сам сабмодуль включает в себя сабмодуль ModelCompilerFramework. Необходимо проконтролировать, что весь исходный код был успешно загружен.
+    /**     
+     @json full_name
+     */
+    var fullName: String
+    
+    /**     
+     @json
+     */
+    var phone: String
+    
+    
+    init(
+        fullName: String,
+        phone: String)
+    {
+        self.fullName = fullName
+        self.phone = phone
+    }
+        
+}
+```
 
-После загрузки сабмодуля, утилиту необходимо собрать. Для этого можно использовать файл `build.command` (см. папку `Source/ParserGenerator`).
+And this utility generates parser for this
 
-После сборки в проект Xcode следует добавить фазу выполнения bash-сценария:
+```swift
+class ClientParser: JSONParser<Client>
+{
+    override func parseObject(_ data: JSON) -> Client?
+    {
+        printAbsentFields(in: data)
+
+        guard
+            let fullName: String = data["full_name"]?.string,
+            let phone: String = data["phone"]?.string
+        else { return nil }
+
+        let object = Client(
+            fullName: fullName,
+            phone: phone
+        )
+        return object
+    }
+
+    override class func modelFields() -> Fields
+    {
+        return Fields(
+            mandatory: Set([
+                "phone", "full_name", 
+            ]),
+            optional: Set([
+                
+            ])
+        )
+    }
+}
+
+```
+
+Parser checks mandatory fields and recursively loop through you JSON. For more info read about our [Core Parser](https://github.com/RedMadRobot/core-parser).
+
+After you get responce from server, just call
+
+```swift
+let client = ClientParser().parse(data).first
+```
+
+## Setup steps
+
+Add git submodule:
+
+`git@github.com:RedMadRobot/parser-generator.git`
+
+After submodule is cloned, you need to build the project. You can call `build.command` (folder `Source/ParserGenerator`).
+
+After this add Run Script Phase to you target:
 
 ```bash
-if [ -f ../ParserGenerator/Source/ParserGenerator/build/ParserGenerator ]
+PARSER_GENERATOR_PATH=ParserGenerator/Source/ParserGenerator/build/ParserGenerator
+
+if [ -f  $PARSER_GENERATOR_PATH]
 then
     echo "ParserGenerator executable found"
 else
-    osascript -e 'tell app "Xcode" to display dialog "Генератор парсеров не найден. Нужно собрать его из исходников. Искать здесь: \nSource/ParserGenerator" buttons {"OK"} with icon caution'
+    osascript -e 'tell app "Xcode" to display dialog "Parser generator not Found: \nSource/ParserGenerator" buttons {"OK"} with icon caution'
 fi
 
-../ParserGenerator/Source/ParserGenerator/build/ParserGenerator \
-    -project_name "PROJECT NAME" \
-    -input "./PROJECT/Classes/Model" \
-    -output "./PROJECT/Generated/Classes/Parser"
+$PARSER_GENERATOR_PATH \
+-project_name $PROJECT_NAME \
+-input "./$PROJECT_NAME/Classes/Model" \
+-output "./$PROJECT_NAME/Generated/Classes/Parser"
 ```
 
-В bash-сценарии необходимо корректно указать путь до исполняемого файла генератора (дважды), название проекта `-project_name`, папку с модельными классами `-input` и папку, куда необходимо складировать созданные файлы `-output`.
+You need to insert correct path to parser generator executable file, project name, input folder of model classes and output folder for parsers.
+`-debug` argument is optional.
 
-Кроме того, в запуск генератора можно добавить параметр `-debug` для активации режима отладки. При этом сценарий будет выглядеть так:
+## Supported annotations
 
-```bash
-if [ -f ../ParserGenerator/Source/ParserGenerator/build/ParserGenerator ]
-then
-    echo "ParserGenerator executable found"
-else
-    osascript -e 'tell app "Xcode" to display dialog "Генератор парсеров не найден. Нужно собрать его из исходников. Искать здесь: \nSource/ParserGenerator" buttons {"OK"} with icon caution'
-fi
+* `@model` — annotation for model class, parser should be generated for. If some class inherit another, parent should include annotations also.
+* `@abstract` — class annotation, parser should **not** be generated for. Ignored if class doesn't include @model.
+* `@json key` — property annotation, that JSON includes. `key` is JSON field key. You can omit `key`, so property name will be the field key.
+* `@parser ParserName` — annotation for property class type. Generates `let value = ParserName().parse(body: data["key"]).first` for single object type and `let value = ParserName().parse(body: data["key"])` for array types.
 
-../ParserGenerator/Source/ParserGenerator/build/ParserGenerator \
-    -debug \
-    -project_name "PROJECT NAME" \
-    -input "./PROJECT/Classes/Model" \
-    -output "./PROJECT/Generated/Classes/Parser"
-```
+## Restrictions
 
-## Поддерживаемые аннотации
-
-Настоятельно рекомендуется предварительно ознакомиться с [бибилотекой «компилятора»](https://git.redmadrobot.com/foundation-ios/ModelCompiler), используемой генератором парсеров в качестве средства сбора информации о модельных классах.
-
-**Генератор парсеров поддерживает аннотации:**
-
-* `@model` — аннотация класса, который должен учитываться генератором. Если модельный объект наследуется от другого модельного объекта, материнский модельный объект тоже должен быть аннотирован.
-* `@abstract` — аннотация класса, для которого не нужно генерировать парсер. Игнорируется, если класс не аннотирован @model
-* `@json key` — аннотация поля класса, которое должно быть получено из JSON-объекта. Значение поля получается по ключу key. Если ключ в аннотации не указан, по умолчанию в качестве key используется имя поля.
-* `@parser ParserName` — аннотация поля класса, для которого необходимо использовать специфичный парсер. При этом генерируется инструкция `let value = ParserName().parse(body: data["key"]).first` для объектных полей и `let value = ParserName().parse(body: data["key"])` для массивов.
-
+* Only support classes

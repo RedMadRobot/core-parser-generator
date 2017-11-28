@@ -10,29 +10,26 @@ import Foundation
 
 
 /**
- ### Класс «Приложение»
+ ### Class «Application»
  
- Предполагается, что в ходе исполнения код вспомогательного модуля **main.swift** запустит следующую
- инструкцию:
+ Assumed **main.swift** will call:
  ```
  exit(Application().run())
  ```
- - precondition: Для исполнения требует предоставить имена файлов заголовков модельных объектов в
- качестве параметров запуска.
+ - precondition: Model classes folder should be passed as input.
  
- - postcondition: Результат исполнения: сгенерированы файлы заголовков и реализации парсеров,
- соответствующих предоставленным модельным объектам.
- - note: Заголовки модельных объектов должны быть соответствующим образом аннотированы.
+ - postcondition: Result: Generated parsers for input model classes.
+ - note: Model classes should include annotations.
  - seealso: main.swift
  */
 class Application {
     
     /**
-     Аргументы запуска приложения.
+     Run arguments.
      */
     let arguments: [String]
     
-    // MARK: - Публичные методы
+    // MARK: - Public methods
     
     init()
     {
