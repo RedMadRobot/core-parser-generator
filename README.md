@@ -2,6 +2,8 @@
 
 > Binary file can be installed via cocoapods ([link](https://github.com/RedMadRobot/cocoapods-specs)).
 
+> Each time you update repository ensure to draft new release, info can be found [here](https://github.com/RedMadRobot/cocoapods-specs/blob/master/README.md).
+
 This utility generates parsers from model objects. Only works for [Core Parser](https://github.com/RedMadRobot/core-parser).
 
 ## Example
