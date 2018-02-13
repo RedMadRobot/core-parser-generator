@@ -1,5 +1,7 @@
 # ParserGenerator
 
+> Binary file can be installed via cocoapods ([link](https://github.com/RedMadRobot/cocoapods-specs)).
+
 This utility generates parsers from model objects. Only works for [Core Parser](https://github.com/RedMadRobot/core-parser).
 
 ## Example
