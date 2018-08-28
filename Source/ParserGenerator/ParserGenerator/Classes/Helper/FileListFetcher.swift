@@ -62,7 +62,7 @@ class FileListFetcher {
             return []
         }
         
-        return folderContents.flatMap { (path: String) -> String? in
+        return folderContents.compactMap { (path: String) -> String? in
             var isFolder: ObjCBool = ObjCBool(false)
             let fullPath: String   = folderPath + "/" + path
             

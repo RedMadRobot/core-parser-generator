@@ -38,7 +38,7 @@ open class Method: Equatable, CustomDebugStringConvertible {
     open var debugDescription: String
     {
         get {
-            return "Method: name: \(self.name); return type: \(self.returnType); annotations: \(self.annotations)"
+            return "Method: name: \(self.name); return type: \(String(describing: self.returnType)); annotations: \(self.annotations)"
                 .replacingOccurrences(of: "[", with: "")
                 .replacingOccurrences(of: "]", with: "")
         }

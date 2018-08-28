@@ -13,7 +13,7 @@ class Protokol: Klass {
     override var debugDescription: String
     {
         get {
-            return "Protokol: name: \(self.name); parent: \(self.parent); annotations: \(self.annotations)"
+            return "Protokol: name: \(self.name); parent: \(self.parent ?? ""); annotations: \(self.annotations)"
                 .replacingOccurrences(of: "[", with: "")
                 .replacingOccurrences(of: "]", with: "")
         }

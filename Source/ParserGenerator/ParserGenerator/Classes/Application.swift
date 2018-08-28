@@ -139,7 +139,7 @@ private extension Application {
     
     func readKlasses(filePathList paths: [String], debugMode: Bool) -> [Klass]
     {
-        return paths.flatMap({ (filePath: String) -> Klass? in
+        return paths.compactMap({ (filePath: String) -> Klass? in
             let filename: String = filePath.truncateUntilWord("/")
             
             if debugMode {
@@ -193,7 +193,7 @@ private extension Application {
                    suppressParentClassWarnings: Bool
         ) -> Int
     {
-        let implementations: [Implementation] = klasses.filter({ return !$0.isAbstract() }).flatMap { (k: Klass) -> Implementation? in
+        let implementations: [Implementation] = klasses.filter({ return !$0.isAbstract() }).compactMap { (k: Klass) -> Implementation? in
             do {
                 return Implementation(
                     filename: k.name + "Parser.swift",
