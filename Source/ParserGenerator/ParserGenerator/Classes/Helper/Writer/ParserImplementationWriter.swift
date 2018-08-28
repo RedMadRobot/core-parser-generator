@@ -24,11 +24,15 @@ class ParserImplementationWriter {
     internal func writeImplementation(
         klass: Klass,
         klasses: [Klass],
-        projectName: String
+        projectName: String,
+        suppressParentClassWarnings: Bool
     ) throws -> String
     {
         let properties =
-            (klass.properties + self.getInheritedProperties(forKlass: klass, availableKlasses: klasses)).filter { return nil != $0.jsonKey() }
+            (klass.properties + self.getInheritedProperties(
+                forKlass: klass,
+                availableKlasses: klasses,
+                suppressParentClassWarnings: suppressParentClassWarnings)).filter { return nil != $0.jsonKey() }
 
         let constructor: Method = try self.chooseConstructor(fromKlass: klass, forProperties: properties)
 
@@ -153,31 +157,41 @@ class ParserImplementationWriter {
 
 private extension ParserImplementationWriter {
     
-    func getInheritedProperties(forKlass klass: Klass, availableKlasses: [Klass]) -> [Property]
+    func getInheritedProperties(
+        forKlass klass: Klass,
+        availableKlasses: [Klass],
+        suppressParentClassWarnings: Bool) -> [Property]
     {
         if let parent: String = klass.parent {
             if let parentKlass = availableKlasses[parent] {
-                return parentKlass.properties + self.getInheritedProperties(forKlass: parentKlass, availableKlasses: availableKlasses)
+                return parentKlass.properties + self.getInheritedProperties(
+                    forKlass: parentKlass,
+                    availableKlasses: availableKlasses,
+                    suppressParentClassWarnings: suppressParentClassWarnings)
             } else if parent.contains(".") {
                 // do nothing; parent class belongs to some framework
-                print(
-                    CompilerMessage(
-                        absoluteFilePath: klass.declaration.absoluteFilePath,
-                        lineNumber: klass.declaration.lineNumber,
-                        message: "[ParserGenerator] Parent class is not available in generator's scope",
-                        type: .Note
+                if !suppressParentClassWarnings {
+                    print(
+                        CompilerMessage(
+                            absoluteFilePath: klass.declaration.absoluteFilePath,
+                            lineNumber: klass.declaration.lineNumber,
+                            message: "[ParserGenerator] Parent class is not available in generator's scope",
+                            type: .Note
+                        )
                     )
-                )
+                }
                 return []
             } else {
-                print(
-                    CompilerMessage(
-                        absoluteFilePath: klass.declaration.absoluteFilePath,
-                        lineNumber: klass.declaration.lineNumber,
-                        message: "[ParserGenerator] Parent class is not available in generator's scope",
-                        type: .Warning
+                if !suppressParentClassWarnings {
+                    print(
+                        CompilerMessage(
+                            absoluteFilePath: klass.declaration.absoluteFilePath,
+                            lineNumber: klass.declaration.lineNumber,
+                            message: "[ParserGenerator] Parent class is not available in generator's scope",
+                            type: .Warning
+                        )
                     )
-                )
+                }
                 return []
             }
         } else {

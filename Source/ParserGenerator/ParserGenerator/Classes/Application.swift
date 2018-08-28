@@ -47,6 +47,7 @@ class Application {
         let inputFilesFolder: String = self.valueForArgument(argument: "-input", defaultValue: ".")
         let outputFolder:     String = self.valueForArgument(argument: "-output", defaultValue: ".")
         let debugMode:        Bool   = arguments.contains("-debug")
+        let suppressParentClassWarnings: Bool = arguments.contains("-suppress_parent_class_warnings")
         
         if debugMode {
             self.printArguments(arguments: self.arguments)
@@ -67,7 +68,8 @@ class Application {
             forKlasses: klasses,
             outputFolder: outputFolder,
             projectName: projectName,
-            debugMode: debugMode
+            debugMode: debugMode,
+            suppressParentClassWarnings: suppressParentClassWarnings
         )
         
         print("Parsers written: " + String(parsersWritten))
@@ -96,6 +98,9 @@ private extension Application {
         print("")
         print("-debug")
         print("Forces generator to print names of analyzed input files and generated parsers.")
+        print("")
+        print("-suppress_parent_class_warnings")
+        print("Don't show warnings if generator can't find model parent class.")
     }
     
     func valueForArgument(argument: String, defaultValue: String) -> String
@@ -184,14 +189,19 @@ private extension Application {
         forKlasses klasses: [Klass],
                    outputFolder: String,
                    projectName: String,
-                   debugMode: Bool
+                   debugMode: Bool,
+                   suppressParentClassWarnings: Bool
         ) -> Int
     {
         let implementations: [Implementation] = klasses.filter({ return !$0.isAbstract() }).compactMap { (k: Klass) -> Implementation? in
             do {
                 return Implementation(
                     filename: k.name + "Parser.swift",
-                    content: try ParserImplementationWriter().writeImplementation(klass: k, klasses: klasses, projectName: projectName)
+                    content: try ParserImplementationWriter().writeImplementation(
+                        klass: k,
+                        klasses: klasses,
+                        projectName: projectName,
+                        suppressParentClassWarnings: suppressParentClassWarnings)
                 )
             } catch let error {
                 print(error)

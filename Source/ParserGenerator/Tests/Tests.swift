@@ -20,7 +20,8 @@ class Tests: XCTestCase {
             let writtenCode: String = try writer.writeImplementation(
                 klass: self.mockKlass(),
                 klasses: self.allClasses(),
-                projectName: "Test"
+                projectName: "Test",
+                suppressParentClassWarnings: false
             )
             XCTAssertEqual(writtenCode, self.expectedCode())
         } catch let error {
