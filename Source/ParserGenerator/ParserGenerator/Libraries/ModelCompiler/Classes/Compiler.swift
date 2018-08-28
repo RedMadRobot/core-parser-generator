@@ -19,7 +19,7 @@ open class Compiler {
     
     open func compile(files: [SourceCodeFile]) throws -> [Klass]
     {
-        return try files.flatMap { (file: SourceCodeFile) -> Klass? in
+        return try files.compactMap { (file: SourceCodeFile) -> Klass? in
             return try self.compile(file: file)
         }
     }

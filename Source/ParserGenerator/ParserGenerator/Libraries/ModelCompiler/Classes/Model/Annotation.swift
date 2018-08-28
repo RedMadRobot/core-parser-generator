@@ -22,7 +22,7 @@ open class Annotation: Equatable, CustomDebugStringConvertible {
     open var debugDescription: String
     {
         get {
-            return "Annotation: name = \(self.name); value = \(self.value)"
+            return "Annotation: name = \(self.name); value = \(self.value ?? "")"
         }
     }
     

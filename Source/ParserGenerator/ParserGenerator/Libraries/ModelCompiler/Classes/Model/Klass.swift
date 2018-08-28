@@ -40,7 +40,7 @@ open class Klass: Equatable, CustomDebugStringConvertible {
     open var debugDescription: String
     {
         get {
-            return "Klass: name: \(self.name); parent: \(self.parent); annotations: \(self.annotations)"
+            return "Klass: name: \(self.name); parent: \(self.parent ?? ""); annotations: \(self.annotations)"
                 .replacingOccurrences(of: "[", with: "")
                 .replacingOccurrences(of: "]", with: "")
         }

@@ -152,8 +152,8 @@ internal extension TypeParser {
         }
         
         var ObjectTypeName: String = typeName.firstWord()
-        if ObjectTypeName.characters.last == "?" {
-            ObjectTypeName = String(ObjectTypeName.characters.dropLast())
+        if ObjectTypeName.last == "?" {
+            ObjectTypeName = String(ObjectTypeName.dropLast())
         }
         
         if ObjectTypeName.isEmpty {
